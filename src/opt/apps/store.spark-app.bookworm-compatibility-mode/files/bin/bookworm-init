@@ -1,0 +1,192 @@
+#!/bin/bash
+
+if [ "$(id -u)" != "0" ]; then
+    echo "当前用户不是 root 用户，退出"
+    exit
+fi
+chrootEnvPath=/opt/apps/store.spark-app.bookworm-compatibility-mode/files/bookworm-env
+if [ ! -e $chrootEnvPath ];then
+echo "Uncompress the env...."
+tar -xvf $chrootEnvPath.tar.xz -C /opt/apps/store.spark-app.bookworm-compatibility-mode/files/
+chown -R $(who | awk '{print $1}' | head -n 1) $chrootEnvPath
+fi
+
+non_root_user=$(who  | awk '{print $1}' | head -n 1)
+uid=$(id -u $non_root_user)
+
+function bookworm-run(){
+bwrap --dev-bind $chrootEnvPath/ / \
+  --setenv LANG "$LANG" \
+  --setenv LC_COLLATE "$LC_COLLATE" \
+  --setenv LC_CTYPE "$LC_CTYPE" \
+  --setenv LC_MONETARY "$LC_MONETARY" \
+  --setenv LC_MESSAGES "$LC_MESSAGES" \
+  --setenv LC_NUMERIC "$LC_NUMERIC" \
+  --setenv LC_TIME "$LC_TIME" \
+  --setenv LC_ALL "$LC_ALL" \
+  --setenv PULSE_SERVER /run/user/$uid/pulse/native \
+  --dev-bind $chrootEnvPath/etc /etc \
+  --dev-bind $chrootEnvPath/opt /opt \
+  --dev-bind $chrootEnvPath/usr /usr \
+  --dev-bind /media /media \
+  --dev /dev  \
+  --proc /proc  \
+  --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
+  --dev-bind $chrootEnvPath/var /var \
+  --dev-bind / /run/host \
+  --hostname bookworm-compatibility-mode \
+  --unshare-uts \
+  --bind /etc/passwd /etc/passwd \
+  --dev-bind /etc/resolv.conf /etc/resolv.conf \
+  --dev-bind /home /home \
+  $@
+
+}
+bookworm-run apt install apt-utils bc curl dialog diffutils findutils gnupg2 less libnss-myhostname libvte-2.9*-common libvte-common lsof ncurses-base passwd pinentry-curses procps sudo time util-linux wget libegl1-mesa libgl1-mesa-glx libvulkan1 mesa-vulkan-drivers locales -y
+
+
+cp -r /usr/lib/x86_64-linux-gnu/dri $chrootEnvPath/usr/lib/x86_64-linux-gnu/dri
+
+container_user_gid="$(id -rg)"
+container_user_home="${HOME:-"/"}"
+container_user_name="${USER}"
+container_user_uid="$(id -ru)"
+
+
+cat << EOFFFFFF > $chrootEnvPath/init.sh
+#!/bin/bash 
+        printf "bookworm-cm: Setting up sudo...\n"
+        mkdir -p /etc/sudoers.d
+        # Do not check fqdn when doing sudo, it will not work anyways
+        if ! grep -q 'Defaults !fqdn' /etc/sudoers.d/sudoers; then
+                printf "Defaults !fqdn\n" >> /etc/sudoers.d/sudoers
+        fi
+        # Ensure passwordless sudo is set up for user
+        if ! grep -q "\"${container_user_name}\" ALL = (root) NOPASSWD:ALL" /etc/sudoers.d/sudoers; then
+                printf "\"%s\" ALL = (root) NOPASSWD:ALL\n" "${container_user_name}" >> /etc/sudoers.d/sudoers
+        fi
+
+
+printf "bookworm-cm: Setting up groups...\n"
+# If not existing, ensure we have a group for our user.
+if ! grep -q "^${container_user_name}:" /etc/group; then
+        if ! groupadd --force --gid "${container_user_gid}" "${container_user_name}"; then
+                # It may occur that we have users with unsupported user name (eg. on LDAP or AD)
+                # So let's try and force the group creation this way.
+                printf "%s:x:%s:" "${container_user_name}" "${container_user_gid}" >> /etc/group
+        fi
+fi
+
+printf "bookworm-cm: Setting up users...\n"
+
+# Setup kerberos integration with the host
+if [ -d "/run/host/var/kerberos" ] &&
+        [ -d "/etc/krb5.conf.d" ] &&
+        [ ! -e "/etc/krb5.conf.d/kcm_default_ccache" ]; then
+
+        cat << EOF > "/etc/krb5.conf.d/kcm_default_ccache"
+# # To disable the KCM credential cache, comment out the following lines.
+[libdefaults]
+    default_ccache_name = KCM:
+EOF
+fi
+
+# If we have sudo/wheel groups, let's add the user to them.
+additional_groups=""
+if grep -q "^sudo" /etc/group; then
+        additional_groups="sudo"
+elif grep -q "^wheel" /etc/group; then
+        additional_groups="wheel"
+fi
+
+# Let's add our user to the container. if the user already exists, enforce properties.
+#
+# In case of AD or LDAP usernames, it is possible we will have a backslach in the name.
+# In that case grep would fail, so we replace the backslash with a point to make the regex work.
+# shellcheck disable=SC1003
+if ! grep -q "^$(printf '%s' "${container_user_name}" | tr '\\' '.'):" /etc/passwd &&
+        ! grep -q "^.*:.*:${container_user_uid}:" /etc/passwd; then
+        if ! useradd \
+                --home-dir "${container_user_home}" \
+                --no-create-home \
+                --groups "${additional_groups}" \
+                --shell "${SHELL:-"/bin/bash"}" \
+                --uid "${container_user_uid}" \
+                --gid "${container_user_gid}" \
+                "${container_user_name}"; then
+
+                printf "Warning: there was a problem setting up the user\n"
+                printf "Warning: trying manual addition\n"
+                printf "%s:x:%s:%s:%s:%s:%s" \
+                        "${container_user_name}" "${container_user_uid}" \
+                        "${container_user_gid}" "${container_user_name}" \
+                        "${container_user_home}" "${SHELL:-"/bin/bash"}" >> /etc/passwd
+                printf "%s::1::::::" "${container_user_name}" >> /etc/shadow
+        fi
+# Ensure we're not using the specified SHELL. Run it only once, so that future
+# user's preferences are not overwritten at each start.
+elif [ ! -e /etc/passwd.done ]; then
+        # This situation is presented when podman or docker already creates the user
+        # for us inside container. We should modify the user's prepopulated shadowfile
+        # entry though as per user's active preferences.
+
+        # If the user was there with a different username, get that username so
+        # we can modify it
+        if ! grep -q "^$(printf '%s' "${container_user_name}" | tr '\\' '.'):" /etc/passwd; then
+                user_to_modify=$(getent passwd "${container_user_uid}" | cut -d: -f1)
+        fi
+
+        if ! usermod \
+                --home "${container_user_home}" \
+                --shell "${SHELL:-"/bin/bash"}" \
+                --groups "${additional_groups}" \
+                --uid "${container_user_uid}" \
+                --gid "${container_user_gid}" \
+                --login "${container_user_name}" \
+                "${user_to_modify:-"${container_user_name}"}"; then
+
+                printf "Warning: there was a problem setting up the user\n"
+        fi
+        touch /etc/passwd.done
+fi
+addgroup messagebus
+# We generate a random password to initialize the entry for the user and root.
+temporary_password="$(cat /proc/sys/kernel/random/uuid)"
+printf "%s\n%s\n" "${temporary_password}" "${temporary_password}" | passwd root
+printf "%s:%s" "${container_user_name}" "${temporary_password}" | chpasswd -e
+# Delete password for root and user
+printf "%s:" "root" | chpasswd -e
+printf "%s:" "${container_user_name}" | chpasswd -e
+
+EOFFFFFF
+
+chmod +x $chrootEnvPath/init.sh
+bookworm-run bash /init.sh
+bookworm-run rm /init.sh
+bookworm-run cp /run/host/etc/locale.gen /etc/locale.gen && locale-gen
+bookworm-run touch /finish.flag
+sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ / \
+  --setenv LANG "$LANG" \
+  --setenv LC_COLLATE "$LC_COLLATE" \
+  --setenv LC_CTYPE "$LC_CTYPE" \
+  --setenv LC_MONETARY "$LC_MONETARY" \
+  --setenv LC_MESSAGES "$LC_MESSAGES" \
+  --setenv LC_NUMERIC "$LC_NUMERIC" \
+  --setenv LC_TIME "$LC_TIME" \
+  --setenv LC_ALL "$LC_ALL" \
+  --setenv PULSE_SERVER /run/user/$uid/pulse/native \
+  --dev-bind $chrootEnvPath/etc /etc \
+  --dev-bind $chrootEnvPath/opt /opt \
+  --dev-bind $chrootEnvPath/usr /usr \
+  --dev-bind /media /media \
+  --dev /dev  \
+  --proc /proc  \
+  --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
+  --dev-bind $chrootEnvPath/var /var \
+  --dev-bind / /run/host \
+  --hostname bookworm-compatibility-mode \
+  --unshare-uts \
+  --bind /etc/passwd /etc/passwd \
+  --dev-bind /etc/resolv.conf /etc/resolv.conf \
+  --dev-bind /home /home \
+  locale-gen

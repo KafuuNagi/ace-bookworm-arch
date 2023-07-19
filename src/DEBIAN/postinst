@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/opt/apps/store.spark-app.bookworm-compatibility-mode/files/bin/bookworm-init

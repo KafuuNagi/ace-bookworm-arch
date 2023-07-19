@@ -1,0 +1,17 @@
+{
+"appid": "store.spark-app.bookworm-compatibility-mode",
+"name": "store.spark-app.bookworm-compatibility-mode",
+"version": "12.0",
+"arch": ["amd64"],
+"permissions": {
+"autostart": true,
+"notification": true,
+"trayicon": true,
+"clipboard": true,
+"account": true,
+"bluetooth": true,
+"camera": true,
+"audio_record": true,
+"installed_apps": true
+}
+}
