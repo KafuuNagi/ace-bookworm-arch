@@ -1,9 +1,0 @@
-[Desktop Entry]
-Categories=utils
-Exec=/opt/apps/store.spark-app.bookworm-compatibility-mode/files/bin/bookworm-run %U
-Icon=store.spark-app.bookworm-compatibility-mode
-Name=Bookworm CM
-Name[zh_CN]=书虫兼容环境
-StartupNotify=true
-Type=Application
-Terminal=true

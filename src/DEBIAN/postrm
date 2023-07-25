@@ -3,7 +3,8 @@
 if [ "$1" = "remove" ] || [ "$1" = "purge" ];then
 
 echo "清理卸载残留"
-rm -rf /opt/apps/store.spark-app.bookworm-compatibility-mode/
+unlink /usr/bin/bookworm-run
+rm -rf /opt/apps/cn.flamescion.bookworm-compatibility-mode/
 else
 echo "非卸载，跳过清理"
 fi

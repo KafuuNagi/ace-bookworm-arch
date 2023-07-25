@@ -1,10 +1,10 @@
 #!/bin/bash
-if [ ! -e /opt/apps/store.spark-app.bookworm-compatibility-mode/files/bookworm-env/finish.flag ];then
+if [ ! -e /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env/finish.flag ];then
 
 if [ "$(id -u)" = "0" ]; then
-    /opt/apps/store.spark-app.bookworm-compatibility-mode/files/bin/bookworm-init
+    /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/bookworm-init
 else
-pkexec /opt/apps/store.spark-app.bookworm-compatibility-mode/files/bin/bookworm-init
+pkexec /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/bookworm-init
 fi
 
 
@@ -14,7 +14,7 @@ OPTIONS="bash"
 else
 OPTIONS="$@"
 fi
-chrootEnvPath=/opt/apps/store.spark-app.bookworm-compatibility-mode/files/bookworm-env
+chrootEnvPath=/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env
 non_root_user=$(who  | awk '{print $1}' | head -n 1)
 uid=$(id -u $non_root_user)
 
@@ -29,14 +29,14 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --setenv LC_TIME "$LC_TIME" \
   --setenv LC_ALL "$LC_ALL" \
   --setenv PULSE_SERVER /run/user/$uid/pulse/native \
-  --dev-bind $chrootEnvPath/etc /etc \
-  --dev-bind $chrootEnvPath/opt /opt \
-  --dev-bind $chrootEnvPath/usr /usr \
+  --setenv PATH /flamescion-container-tools/bin-override:$PATH \
+  --dev-bind $chrootEnvPath/ / \
   --dev-bind /media /media \
   --dev /dev  \
   --proc /proc  \
+  --dev-bind /sys /sys  \
+  --dev-bind /run /run  \
   --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
-  --dev-bind $chrootEnvPath/var /var \
   --dev-bind / /run/host \
   --hostname bookworm-compatibility-mode \
   --unshare-uts \
@@ -44,6 +44,7 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --dev-bind /etc/resolv.conf /etc/resolv.conf \
   --dev-bind /home /home \
   $OPTIONS
+
 
 
 

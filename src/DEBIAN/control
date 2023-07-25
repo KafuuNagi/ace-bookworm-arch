@@ -1,5 +1,5 @@
-Package: store.spark-app.bookworm-compatibility-mode
-Version: 12.0
+Package: cn.flamescion.bookworm-compatibility-mode
+Version: 12.1.1
 Section: misc
 Priority: optional
 Depends: bubblewrap

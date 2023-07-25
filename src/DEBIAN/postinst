@@ -1,3 +1,4 @@
 #!/bin/bash
 
-/opt/apps/store.spark-app.bookworm-compatibility-mode/files/bin/bookworm-init
+/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/bookworm-init
+ln -sf /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/bookworm-run /usr/bin/bookworm-run

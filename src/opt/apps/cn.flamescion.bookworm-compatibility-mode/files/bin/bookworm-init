@@ -4,12 +4,15 @@ if [ "$(id -u)" != "0" ]; then
     echo "当前用户不是 root 用户，退出"
     exit
 fi
-chrootEnvPath=/opt/apps/store.spark-app.bookworm-compatibility-mode/files/bookworm-env
+chrootEnvPath=/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env
 if [ ! -e $chrootEnvPath ];then
 echo "Uncompress the env...."
-tar -xvf $chrootEnvPath.tar.xz -C /opt/apps/store.spark-app.bookworm-compatibility-mode/files/
-chown -R $(who | awk '{print $1}' | head -n 1) $chrootEnvPath
+tar  -xvf $chrootEnvPath.tar.xz -C /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/
 fi
+
+echo "Update the flamescion container tools"
+tar  -xvf `dirname $chrootEnvPath`flamescion-container-tools.tar.xz -C $chrootEnvPath
+chown -R $(who | awk '{print $1}' | head -n 1) $chrootEnvPath
 
 non_root_user=$(who  | awk '{print $1}' | head -n 1)
 uid=$(id -u $non_root_user)
@@ -25,14 +28,14 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --setenv LC_TIME "$LC_TIME" \
   --setenv LC_ALL "$LC_ALL" \
   --setenv PULSE_SERVER /run/user/$uid/pulse/native \
-  --dev-bind $chrootEnvPath/etc /etc \
-  --dev-bind $chrootEnvPath/opt /opt \
-  --dev-bind $chrootEnvPath/usr /usr \
+  --setenv PATH /flamescion-container-tools/bin-override:$PATH \
+  --dev-bind $chrootEnvPath/ / \
   --dev-bind /media /media \
   --dev /dev  \
   --proc /proc  \
+  --dev-bind /sys /sys  \
+  --dev-bind /run /run  \
   --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
-  --dev-bind $chrootEnvPath/var /var \
   --dev-bind / /run/host \
   --hostname bookworm-compatibility-mode \
   --unshare-uts \
@@ -41,11 +44,13 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --dev-bind /home /home \
   $@
 
+
 }
-bookworm-run apt install apt-utils bc curl dialog diffutils findutils gnupg2 less libnss-myhostname libvte-2.9*-common libvte-common lsof ncurses-base passwd pinentry-curses procps sudo time util-linux wget libegl1-mesa libgl1-mesa-glx libvulkan1 mesa-vulkan-drivers locales -y
+bookworm-run apt update
+bookworm-run apt install apt-utils bc curl dialog diffutils findutils gnupg2 less libnss-myhostname libvte-2.9*-common libvte-common lsof ncurses-base passwd pinentry-curses procps sudo time util-linux wget libegl1-mesa libgl1-mesa-glx libvulkan1 mesa-vulkan-drivers locales libglib2.0-bin -y
 
 
-cp -r /usr/lib/x86_64-linux-gnu/dri $chrootEnvPath/usr/lib/x86_64-linux-gnu/dri
+cp -r /usr/lib/`gcc -dumpmachine`/dri $chrootEnvPath/usr/lib/`gcc -dumpmachine`/dri
 
 container_user_gid="$(id -rg)"
 container_user_home="${HOME:-"/"}"
@@ -175,14 +180,14 @@ sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ /
   --setenv LC_TIME "$LC_TIME" \
   --setenv LC_ALL "$LC_ALL" \
   --setenv PULSE_SERVER /run/user/$uid/pulse/native \
-  --dev-bind $chrootEnvPath/etc /etc \
-  --dev-bind $chrootEnvPath/opt /opt \
-  --dev-bind $chrootEnvPath/usr /usr \
+  --setenv PATH /flamescion-container-tools/bin-override:$PATH \
+  --dev-bind $chrootEnvPath/ / \
   --dev-bind /media /media \
   --dev /dev  \
   --proc /proc  \
+  --dev-bind /sys /sys  \
+  --dev-bind /run /run  \
   --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
-  --dev-bind $chrootEnvPath/var /var \
   --dev-bind / /run/host \
   --hostname bookworm-compatibility-mode \
   --unshare-uts \
