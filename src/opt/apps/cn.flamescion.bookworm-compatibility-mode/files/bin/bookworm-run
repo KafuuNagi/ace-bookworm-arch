@@ -10,9 +10,25 @@ fi
 
 fi
 if [ "$1" = "" ];then
-OPTIONS="bash"
+cmd=bash
 else
-OPTIONS="$@"
+
+
+			# container_command=$*
+			cmd="$1"
+			shift
+			for arg in "$@"; do
+if [[ $arg =~ \  ]]; then
+    arg=\'${arg//\'/\'\\\'\'}\'
+fi
+				OPTIONS="${OPTIONS} ${arg}"
+			done
+
+echo -----------------------
+echo ${cmd} ${OPTIONS}
+echo -----------------------
+
+
 fi
 chrootEnvPath=/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env
 non_root_user=$(who  | awk '{print $1}' | head -n 1)
@@ -32,6 +48,7 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --setenv PATH /flamescion-container-tools/bin-override:$PATH \
   --dev-bind $chrootEnvPath/ / \
   --dev-bind /media /media \
+  --dev-bind /tmp /tmp \
   --dev /dev  \
   --proc /proc  \
   --dev-bind /sys /sys  \
@@ -43,8 +60,7 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --bind /etc/passwd /etc/passwd \
   --dev-bind /etc/resolv.conf /etc/resolv.conf \
   --dev-bind /home /home \
-  $OPTIONS
-
+  bash -c "${cmd} ${OPTIONS}"
 
 
 
