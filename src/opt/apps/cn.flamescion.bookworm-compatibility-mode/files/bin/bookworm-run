@@ -24,11 +24,6 @@ fi
 				OPTIONS="${OPTIONS} ${arg}"
 			done
 
-echo -----------------------
-echo ${cmd} ${OPTIONS}
-echo -----------------------
-
-
 fi
 chrootEnvPath=/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env
 non_root_user=$(who  | awk '{print $1}' | head -n 1)
@@ -55,9 +50,11 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --dev-bind /run /run  \
   --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
   --dev-bind / /run/host \
+  --bind-try /usr/share/themes /usr/local/share/themes  \
+  --bind-try /usr/share/icons /usr/local/share/icons  \
+  --bind-try /usr/share/fonts /usr/local/share/fonts  \
   --hostname bookworm-compatibility-mode \
   --unshare-uts \
-  --bind /etc/passwd /etc/passwd \
   --dev-bind /etc/resolv.conf /etc/resolv.conf \
   --dev-bind /home /home \
   bash -c "${cmd} ${OPTIONS}"

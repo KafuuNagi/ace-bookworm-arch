@@ -11,7 +11,7 @@ tar  -xvf $chrootEnvPath.tar.xz -C /opt/apps/cn.flamescion.bookworm-compatibilit
 fi
 
 echo "Update the flamescion container tools"
-tar  -xvf `dirname $chrootEnvPath`flamescion-container-tools.tar.xz -C $chrootEnvPath
+tar  -xvf `dirname $chrootEnvPath`/flamescion-container-tools.tar.xz -C $chrootEnvPath
 chown -R $(who | awk '{print $1}' | head -n 1) $chrootEnvPath
 
 non_root_user=$(who  | awk '{print $1}' | head -n 1)
@@ -31,15 +31,18 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --setenv PATH /flamescion-container-tools/bin-override:$PATH \
   --dev-bind $chrootEnvPath/ / \
   --dev-bind /media /media \
+  --dev-bind /tmp /tmp \
   --dev /dev  \
   --proc /proc  \
   --dev-bind /sys /sys  \
   --dev-bind /run /run  \
   --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
   --dev-bind / /run/host \
+  --bind-try /usr/share/themes /usr/local/share/themes  \
+  --bind-try /usr/share/icons /usr/local/share/icons  \
+  --bind-try /usr/share/fonts /usr/local/share/fonts  \
   --hostname bookworm-compatibility-mode \
   --unshare-uts \
-  --bind /etc/passwd /etc/passwd \
   --dev-bind /etc/resolv.conf /etc/resolv.conf \
   --dev-bind /home /home \
   $@
@@ -52,10 +55,10 @@ bookworm-run apt install apt-utils bc curl dialog diffutils findutils gnupg2 les
 
 cp -r /usr/lib/`gcc -dumpmachine`/dri $chrootEnvPath/usr/lib/`gcc -dumpmachine`/dri
 
-container_user_gid="$(id -rg)"
-container_user_home="${HOME:-"/"}"
-container_user_name="${USER}"
-container_user_uid="$(id -ru)"
+container_user_gid="$(sudo -u $non_root_user id -rg)"
+container_user_home="/home/${non_root_user}"
+container_user_name="${non_root_user}"
+container_user_uid="$(sudo -u $non_root_user id -ru)"
 
 
 cat << EOFFFFFF > $chrootEnvPath/init.sh
@@ -154,7 +157,7 @@ elif [ ! -e /etc/passwd.done ]; then
         fi
         touch /etc/passwd.done
 fi
-addgroup messagebus
+
 # We generate a random password to initialize the entry for the user and root.
 temporary_password="$(cat /proc/sys/kernel/random/uuid)"
 printf "%s\n%s\n" "${temporary_password}" "${temporary_password}" | passwd root
@@ -183,15 +186,18 @@ sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ /
   --setenv PATH /flamescion-container-tools/bin-override:$PATH \
   --dev-bind $chrootEnvPath/ / \
   --dev-bind /media /media \
+  --dev-bind /tmp /tmp \
   --dev /dev  \
   --proc /proc  \
   --dev-bind /sys /sys  \
   --dev-bind /run /run  \
   --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
   --dev-bind / /run/host \
+  --bind-try /usr/share/themes /usr/local/share/themes  \
+  --bind-try /usr/share/icons /usr/local/share/icons  \
+  --bind-try /usr/share/fonts /usr/local/share/fonts  \
   --hostname bookworm-compatibility-mode \
   --unshare-uts \
-  --bind /etc/passwd /etc/passwd \
   --dev-bind /etc/resolv.conf /etc/resolv.conf \
   --dev-bind /home /home \
   locale-gen
