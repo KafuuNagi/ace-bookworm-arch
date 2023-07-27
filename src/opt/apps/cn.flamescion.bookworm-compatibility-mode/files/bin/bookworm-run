@@ -1,10 +1,19 @@
 #!/bin/bash
-if [ ! -e /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env/finish.flag ];then
+
+curdir=`realpath $0`
+parent_dir=`dirname $curdir`
+pparent_dir=`dirname $parent_dir`
+ppparent_dir=`dirname $pparent_dir`
+PKGNAME=`basename $ppparent_dir`
+export PACKAGE_NAME=$PKGNAME
+chrootEnvPath=/opt/apps/$PKGNAME/files/bookworm-env
+
+if [ ! -e $chrootEnvPath/finish.flag ];then
 
 if [ "$(id -u)" = "0" ]; then
-    /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/bookworm-init
+    `dirname $chrootEnvPath`/bin/bookworm-init
 else
-pkexec /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/bookworm-init
+pkexec `dirname $chrootEnvPath`/bin/bookworm-init
 fi
 
 
@@ -25,7 +34,7 @@ fi
 			done
 
 fi
-chrootEnvPath=/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env
+
 non_root_user=$(who  | awk '{print $1}' | head -n 1)
 uid=$(id -u $non_root_user)
 
@@ -49,7 +58,7 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --dev-bind /sys /sys  \
   --dev-bind /run /run  \
   --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
-  --dev-bind / /run/host \
+  --dev-bind / /host \
   --bind-try /usr/share/themes /usr/local/share/themes  \
   --bind-try /usr/share/icons /usr/local/share/icons  \
   --bind-try /usr/share/fonts /usr/local/share/fonts  \

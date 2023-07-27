@@ -4,15 +4,20 @@ if [ "$(id -u)" != "0" ]; then
     echo "当前用户不是 root 用户，退出"
     exit
 fi
-chrootEnvPath=/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env
+if [ "$PACKAGE_NAME" = "" ];then
+PKGNAME=cn.flamescion.bookworm-compatibility-mode
+else
+PKGNAME=$PACKAGE_NAME
+fi
+chrootEnvPath=/opt/apps/$PKGNAME/files/bookworm-env
 if [ ! -e $chrootEnvPath ];then
 echo "Uncompress the env...."
-tar  -xvf $chrootEnvPath.tar.xz -C /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/
+tar  -xvf $chrootEnvPath.tar.xz -C /opt/apps/$PKGNAME/files/
 fi
 
 echo "Update the flamescion container tools"
 tar  -xvf `dirname $chrootEnvPath`/flamescion-container-tools.tar.xz -C $chrootEnvPath
-chown -R $(who | awk '{print $1}' | head -n 1) $chrootEnvPath
+
 
 non_root_user=$(who  | awk '{print $1}' | head -n 1)
 uid=$(id -u $non_root_user)
@@ -37,7 +42,7 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --dev-bind /sys /sys  \
   --dev-bind /run /run  \
   --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
-  --dev-bind / /run/host \
+  --dev-bind / /host \
   --bind-try /usr/share/themes /usr/local/share/themes  \
   --bind-try /usr/share/icons /usr/local/share/icons  \
   --bind-try /usr/share/fonts /usr/local/share/fonts  \
@@ -171,7 +176,7 @@ EOFFFFFF
 chmod +x $chrootEnvPath/init.sh
 bookworm-run bash /init.sh
 bookworm-run rm /init.sh
-bookworm-run cp /run/host/etc/locale.gen /etc/locale.gen && locale-gen
+bookworm-run cp /host/etc/locale.gen /etc/locale.gen && locale-gen
 bookworm-run touch /finish.flag
 sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ / \
   --setenv LANG "$LANG" \
@@ -192,7 +197,7 @@ sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ /
   --dev-bind /sys /sys  \
   --dev-bind /run /run  \
   --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
-  --dev-bind / /run/host \
+  --dev-bind / /host \
   --bind-try /usr/share/themes /usr/local/share/themes  \
   --bind-try /usr/share/icons /usr/local/share/icons  \
   --bind-try /usr/share/fonts /usr/local/share/fonts  \
@@ -201,3 +206,5 @@ sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ /
   --dev-bind /etc/resolv.conf /etc/resolv.conf \
   --dev-bind /home /home \
   locale-gen
+
+chown -R $(who | awk '{print $1}' | head -n 1) $chrootEnvPath

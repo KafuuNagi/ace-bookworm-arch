@@ -1,4 +1,6 @@
 #!/bin/bash
-
-/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/bookworm-init
+export PACKAGE_NAME="$DPKG_MAINTSCRIPT_PACKAGE"
+/opt/apps/$PACKAGE_NAME/files/bin/bookworm-init
+if [ "$PACKAGE_NAME" = "cn.flamescion.bookworm-compatibility-mode" ];then
 ln -sf /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/bookworm-run /usr/bin/bookworm-run
+fi

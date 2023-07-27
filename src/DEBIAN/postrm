@@ -1,10 +1,12 @@
 #!/bin/bash
-
+PACKAGE_NAME="$DPKG_MAINTSCRIPT_PACKAGE"
 if [ "$1" = "remove" ] || [ "$1" = "purge" ];then
-
-echo "清理卸载残留"
+if [ "$PACKAGE_NAME" = "cn.flamescion.bookworm-compatibility-mode" ];then
 unlink /usr/bin/bookworm-run
-rm -rf /opt/apps/cn.flamescion.bookworm-compatibility-mode/
+fi
+echo "清理卸载残留"
+
+rm -rf /opt/apps/$PACKAGE_NAME
 else
 echo "非卸载，跳过清理"
 fi
