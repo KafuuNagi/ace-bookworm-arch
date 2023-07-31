@@ -5,7 +5,11 @@ if [ "$(id -u)" != "0" ]; then
     exit
 fi
 if [ "$PACKAGE_NAME" = "" ];then
-PKGNAME=cn.flamescion.bookworm-compatibility-mode
+curdir=`realpath $0`
+parent_dir=`dirname $curdir`
+pparent_dir=`dirname $parent_dir`
+ppparent_dir=`dirname $pparent_dir`
+PKGNAME=`basename $ppparent_dir`
 else
 PKGNAME=$PACKAGE_NAME
 fi
