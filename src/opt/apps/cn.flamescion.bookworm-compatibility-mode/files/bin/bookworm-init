@@ -58,7 +58,8 @@ bookworm-run apt update
 bookworm-run apt install apt-utils bc curl dialog diffutils findutils gnupg2 less libnss-myhostname libvte-2.9*-common libvte-common lsof ncurses-base passwd pinentry-curses procps sudo time util-linux wget libegl1-mesa libgl1-mesa-glx libvulkan1 mesa-vulkan-drivers locales libglib2.0-bin -y
 
 
-cp -r /usr/lib/`gcc -dumpmachine`/dri $chrootEnvPath/usr/lib/`gcc -dumpmachine`/dri
+rm -rf $chrootEnvPath/usr/lib/`gcc -dumpmachine`/dri/dri
+# 之前错误的多复制了一个，这里删掉
 
 container_user_gid="$(sudo -u $non_root_user id -rg)"
 container_user_home="/home/${non_root_user}"
