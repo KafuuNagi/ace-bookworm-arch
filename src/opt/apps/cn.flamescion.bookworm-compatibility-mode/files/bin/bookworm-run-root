@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ "$(id -u)" != "0" ]; then
+    echo "当前用户不是 root 用户，退出"
+    exit
+fi
 
 curdir=`realpath $0`
 parent_dir=`dirname $curdir`
@@ -7,12 +11,6 @@ ppparent_dir=`dirname $pparent_dir`
 PKGNAME=`basename $ppparent_dir`
 export PACKAGE_NAME=$PKGNAME
 chrootEnvPath=/opt/apps/$PKGNAME/files/bookworm-env
-
-
-if [ "$(id -u)" = "0" ]; then
-`dirname $chrootEnvPath`/bin/bookworm-run-root "$@"
-exit
-fi
 
 if [ ! -e $chrootEnvPath/finish.flag ];then
 
@@ -66,7 +64,7 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
   --dev-bind / /host \
   --ro-bind /usr/share/themes /usr/local/share/themes  \
-  --ro-bind /usr/share/icons /usr/share/icons  \
+  --ro-bind /usr/share/icons /usr/local/share/icons  \
   --ro-bind /usr/share/fonts /usr/local/share/fonts  \
   --hostname bookworm-compatibility-mode \
   --unshare-uts \
