@@ -183,6 +183,7 @@ bookworm-run bash /init.sh
 bookworm-run rm /init.sh
 bookworm-run cp /host/etc/locale.gen /etc/locale.gen && locale-gen
 bookworm-run touch /finish.flag
+bookworm-run apt clean
 sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ / \
   --setenv LANG "$LANG" \
   --setenv LC_COLLATE "$LC_COLLATE" \
