@@ -45,7 +45,7 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --proc /proc  \
   --dev-bind /sys /sys  \
   --dev-bind /run /run  \
-  --dev-bind /run/user/$uid/pulse /run/user/$uid/pulse  \
+  --dev-bind-try /run/user/$uid/pulse /run/user/$uid/pulse  \
   --dev-bind / /host \
   --bind-try /usr/share/themes /usr/local/share/themes  \
   --bind-try /usr/share/icons /usr/local/share/icons  \
