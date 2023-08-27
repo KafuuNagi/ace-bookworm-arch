@@ -203,9 +203,9 @@ sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ /
   --dev-bind /run /run  \
   --dev-bind-try /run/user/$uid/pulse /run/user/$uid/pulse  \
   --dev-bind / /host \
-  --bind-ro /usr/share/themes /usr/local/share/themes  \
-  --bind-ro /usr/share/icons /usr/local/share/icons  \
-  --bind-ro /usr/share/fonts /usr/local/share/fonts  \
+  --ro-bind /usr/share/themes /usr/local/share/themes  \
+  --ro-bind /usr/share/icons /usr/local/share/icons  \
+  --ro-bind /usr/share/fonts /usr/local/share/fonts  \
   --hostname bookworm-compatibility-mode \
   --unshare-uts \
   --dev-bind /etc/resolv.conf /etc/resolv.conf \
