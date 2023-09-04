@@ -29,15 +29,15 @@ cmd=bash
 else
 
 
-			# container_command=$*
-			cmd="$1"
-			shift
-			for arg in "$@"; do
+                        # container_command=$*
+                        cmd="$1"
+                        shift
+                        for arg in "$@"; do
 if [[ $arg =~ \  ]]; then
     arg=\'${arg//\'/\'\\\'\'}\'
 fi
-				OPTIONS="${OPTIONS} ${arg}"
-			done
+                                OPTIONS="${OPTIONS} ${arg}"
+                        done
 
 fi
 
@@ -60,6 +60,7 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --dev-bind /media /media \
   --dev-bind /tmp /tmp \
   --dev /dev  \
+  --dev-bind /dev/dri /dev/dri  \
   --proc /proc  \
   --dev-bind /sys /sys  \
   --dev-bind /run /run  \
@@ -73,6 +74,3 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --dev-bind /etc/resolv.conf /etc/resolv.conf \
   --dev-bind /home /home \
   bash -c "${cmd} ${OPTIONS}"
-
-
-

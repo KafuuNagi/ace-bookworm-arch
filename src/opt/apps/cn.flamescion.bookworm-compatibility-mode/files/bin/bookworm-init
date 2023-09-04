@@ -42,6 +42,7 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --dev-bind /media /media \
   --dev-bind /tmp /tmp \
   --dev /dev  \
+  --dev-bind /dev/dri /dev/dri  \
   --proc /proc  \
   --dev-bind /sys /sys  \
   --dev-bind /run /run  \
@@ -199,6 +200,7 @@ sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ /
   --dev-bind /media /media \
   --dev-bind /tmp /tmp \
   --dev /dev  \
+  --dev-bind /dev/dri /dev/dri  \
   --proc /proc  \
   --dev-bind /sys /sys  \
   --dev-bind /run /run  \
