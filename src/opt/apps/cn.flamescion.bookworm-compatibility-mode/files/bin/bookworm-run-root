@@ -13,11 +13,6 @@ export PACKAGE_NAME=$PKGNAME
 chrootEnvPath=/opt/apps/$PKGNAME/files/bookworm-env
 
 
-if [ "$(id -u)" = "0" ]; then
-`dirname $chrootEnvPath`/bin/bookworm-run-root "$@"
-exit
-fi
-
 if [ ! -e $chrootEnvPath/finish.flag ];then
 
 if [ "$(id -u)" = "0" ]; then
