@@ -24,25 +24,22 @@ fi
 
 
 fi
-if [ "$1" = "" ];then
-cmd=bash
-else
-
-
-                        # container_command=$*
-                        cmd="$1"
-                        shift
-                        for arg in "$@"; do
-if [[ $arg =~ \  ]]; then
-    arg=\'${arg//\'/\'\\\'\'}\'
-fi
-                                OPTIONS="${OPTIONS} ${arg}"
-                        done
-
-fi
-
 non_root_user=$(who  | awk '{print $1}' | head -n 1)
 uid=$(id -u $non_root_user)
+
+
+#### This part is for args pharm
+if [ "$1" = "" ];then
+container_command="bash"
+else
+container_command="$1"
+shift
+for arg in "$@"; do
+        arg="$(echo "${arg}x" | sed 's|'\''|'\'\\\\\'\''|g')"
+        arg="${arg%x}"
+        container_command="${container_command} '${arg}'"
+done
+fi
 
 
 bwrap --dev-bind $chrootEnvPath/ / \
@@ -73,4 +70,4 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --unshare-uts \
   --dev-bind /etc/resolv.conf /etc/resolv.conf \
   --dev-bind /home /home \
-  bash -c "${cmd} ${OPTIONS}"
+  bash -c "${container_command}"
