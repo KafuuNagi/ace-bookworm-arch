@@ -20,7 +20,7 @@ tar  -xvf $chrootEnvPath.tar.xz -C /opt/apps/$PKGNAME/files/
 fi
 
 echo "Update the flamescion container tools"
-tar  -xvf `dirname $chrootEnvPath`/flamescion-container-tools.tar.xz -C $chrootEnvPath
+cp -r `dirname $chrootEnvPath`/flamescion-container-tools/  $chrootEnvPath
 
 
 non_root_user=$(who  | awk '{print $1}' | head -n 1)
@@ -176,6 +176,10 @@ printf "%s:%s" "${container_user_name}" "${temporary_password}" | chpasswd -e
 # Delete password for root and user
 printf "%s:" "root" | chpasswd -e
 printf "%s:" "${container_user_name}" | chpasswd -e
+
+## init host-spawn
+unlink /flamescion-container-tools/bin-override/host-spawn
+ln -sf /flamescion-container-tools/bin-override/host-spawn-`arch` /flamescion-container-tools/bin-override/host-spawn
 
 EOFFFFFF
 

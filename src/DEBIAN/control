@@ -1,5 +1,5 @@
 Package: cn.flamescion.bookworm-compatibility-mode
-Version: 12.1.10
+Version: 12.1.11
 Section: misc
 Priority: optional
 Depends: bubblewrap
