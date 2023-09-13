@@ -20,7 +20,7 @@ tar  -xvf $chrootEnvPath.tar.xz -C /opt/apps/$PKGNAME/files/
 fi
 
 echo "Update the flamescion container tools"
-cp -r `dirname $chrootEnvPath`/flamescion-container-tools/  $chrootEnvPath
+cp -rv `dirname $chrootEnvPath`/flamescion-container-tools/  $chrootEnvPath
 
 
 non_root_user=$(who  | awk '{print $1}' | head -n 1)
@@ -179,7 +179,7 @@ printf "%s:" "${container_user_name}" | chpasswd -e
 
 ## init host-spawn
 unlink /flamescion-container-tools/bin-override/host-spawn
-ln -sf /flamescion-container-tools/bin-override/host-spawn-`arch` /flamescion-container-tools/bin-override/host-spawn
+ln -sfv /flamescion-container-tools/bin-override/host-spawn-`arch` /flamescion-container-tools/bin-override/host-spawn
 
 EOFFFFFF
 
