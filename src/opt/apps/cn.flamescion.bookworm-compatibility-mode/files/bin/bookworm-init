@@ -219,5 +219,5 @@ sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ /
   --dev-bind /home /home \
   locale-gen
 
-chown -R $(who | awk '{print $1}' | head -n 1) $chrootEnvPath
+chown -R root $chrootEnvPath
 

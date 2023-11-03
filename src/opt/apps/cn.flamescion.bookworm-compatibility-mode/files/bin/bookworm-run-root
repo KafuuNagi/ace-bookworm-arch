@@ -41,7 +41,8 @@ done
 fi
 
 
-bwrap --dev-bind $chrootEnvPath/ / \
+bwrap --dev-bind / / \
+  bwrap \
   --setenv LANG "$LANG" \
   --setenv LC_COLLATE "$LC_COLLATE" \
   --setenv LC_CTYPE "$LC_CTYPE" \
@@ -68,6 +69,7 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --hostname bookworm-compatibility-mode \
   --unshare-uts \
   --dev-bind /etc/resolv.conf /etc/resolv.conf \
+  --cap-add CAP_SYS_ADMIN \
   --dev-bind /home /home \
   bash -c "${container_command}"
 
