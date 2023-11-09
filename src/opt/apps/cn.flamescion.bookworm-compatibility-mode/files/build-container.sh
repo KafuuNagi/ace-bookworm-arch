@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 if [ `which debootstrap` = "" ];then
 echo "Need to install debootstrap!"
 exit
