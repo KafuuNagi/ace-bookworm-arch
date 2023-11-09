@@ -7,7 +7,7 @@
 
 书虫兼容模式让你可以在deepin或UOS上使用Debian 12的应用，为你带来更好的使用体验！
 
-兼容环境内不允许提权，若要在容器内使用root，请使用 sudo bookworm-run
+请使用 `git clone --recurse-submodules` 来获取
 
 ## 构建指南
 
@@ -24,7 +24,7 @@ With the help of bubblewrap, a super tiny container solution, you can run a `Deb
 
 Bookworm compatibility mode allows you to use Debian 12 applications on deepin or UniontechOS using bwrap containers, providing you with a better user experience!
 
-It is not allowed to gain root privileges within the compatible environment. If you need to use root within the container, please use "sudo bookworm-run"
+Please use `git clone --recurse-submodules` to obtain the env
 
 ## Build Guide
 
