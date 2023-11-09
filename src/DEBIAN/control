@@ -4,5 +4,5 @@ Section: misc
 Priority: optional
 Depends: bubblewrap,flatpak
 Maintainer: shenmo <shenmo@spark-app.store>
-Architecture: amd64
+Architecture: arm64
 Description: bwrap wrapper for install and running debs inside a bookworm container

@@ -190,8 +190,8 @@ bookworm-run rm /init.sh
 bookworm-run cp /host/etc/locale.gen /etc/locale.gen && locale-gen
 
 
-if [ ! -e $chrootEnvPath/opt/ace-host-integration/ace-host-integration ];then
-echo "Fix: 12.3-new feature: integrate. Installing..."
+
+echo "Installing or Upgrading host integration..."
 gitee_api_url="https://gitee.com/api/v5/repos/amber-compatability-environment/ace-host-integration/releases/latest"
 resp="$(curl -s $gitee_api_url)"
 VERSION_GITEE="$(jq -r '.tag_name' <<<$resp | sed "s/.*V\([^_]*\).*/\1/g")"
@@ -199,7 +199,7 @@ echo "$VERSION_GITEE"
 bookworm-run wget https://gitee.com/amber-compatability-environment/ace-host-integration/releases/download/${VERSION_GITEE}/ace-host-integration_${VERSION_GITEE}_all.deb
 bookworm-run apt install ./ace-host-integration_${VERSION_GITEE}_all.deb
 bookworm-run rm ./ace-host-integration_${VERSION_GITEE}_all.deb
-fi
+
 
 bookworm-run touch /finish.flag
 bookworm-run apt clean
