@@ -33,7 +33,7 @@ resp="$(curl -s $gitee_api_url)"
 VERSION_GITEE="$(jq -r '.tag_name' <<<$resp | sed "s/.*V\([^_]*\).*/\1/g")"
 echo "$VERSION_GITEE"
 
-sudo wget https://gitee.com/amber-compatability-environment/ace-host-integration/releases/download/0.1/ace-host-integration_${VERSION_GITEE}_all.deb
+sudo wget https://gitee.com/amber-compatability-environment/ace-host-integration/releases/download/${VERSION_GITEE}/ace-host-integration_${VERSION_GITEE}_all.deb
 
 popd
 
