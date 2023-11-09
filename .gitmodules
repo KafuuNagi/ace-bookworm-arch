@@ -1,0 +1,3 @@
+[submodule "bin-override"]
+	path = src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/flamescion-container-tools/bin-override
+	url = https://gitee.com/amber-compatability-environment/bin-override.git
