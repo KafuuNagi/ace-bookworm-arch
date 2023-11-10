@@ -57,8 +57,9 @@ bwrap --dev-bind $chrootEnvPath/ / \
 
 
 }
-bookworm-run apt update
-bookworm-run apt install apt-utils bc curl dialog diffutils findutils gnupg2 less libnss-myhostname libvte-2.9*-common libvte-common lsof ncurses-base passwd pinentry-curses procps sudo time util-linux wget libegl1-mesa libgl1-mesa-glx libvulkan1 mesa-vulkan-drivers locales libglib2.0-bin -y
+# Move the package init work to build stage
+#bookworm-run apt update
+#bookworm-run apt install apt-utils bc curl dialog diffutils findutils gnupg2 less libnss-myhostname libvte-2.9*-common libvte-common lsof ncurses-base passwd pinentry-curses procps sudo time util-linux wget libegl1-mesa libgl1-mesa-glx libvulkan1 mesa-vulkan-drivers locales libglib2.0-bin -y
 echo "Update the flamescion container tools"
 cp -r `dirname $chrootEnvPath`/flamescion-container-tools/  $chrootEnvPath
 
