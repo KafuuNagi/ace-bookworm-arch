@@ -1,0 +1,3 @@
+#!/bin/bash
+### We do not want users to install ACE in ACE. Run inside this container instead
+${@}
