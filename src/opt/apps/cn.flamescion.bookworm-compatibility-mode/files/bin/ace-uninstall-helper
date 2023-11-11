@@ -3,10 +3,10 @@
 
 
 # 清除先前的变量值
-unset ABSOLUTE_PATH IN_CONTAINER_PATH PKGNAME_GUESS DPKG_LIST_FILE BOOKWORM_ENV_PATH
+unset ABSOLUTE_PATH IN_CONTAINER_PATH PKGNAME_GUESS DPKG_LIST_FILE ACE_ENV_PATH
 
 # 定义环境路径变量
-BOOKWORM_ENV_PATH="/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env"
+ACE_ENV_PATH="/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env"
 
 # 检查参数个数
 if [ "$#" -ne 1 ]; then
@@ -16,8 +16,8 @@ fi
 
 # 保存并验证绝对路径
 ABSOLUTE_PATH=$1
-if [[ $ABSOLUTE_PATH != "$BOOKWORM_ENV_PATH"* ]]; then
-    echo "Error: Invalid path. Must start with $BOOKWORM_ENV_PATH"
+if [[ $ABSOLUTE_PATH != "$ACE_ENV_PATH"* ]]; then
+    echo "Error: Invalid path. Must start with $ACE_ENV_PATH"
     exit 1
 fi
 
@@ -28,13 +28,13 @@ if [[ ! $ABSOLUTE_PATH == *.desktop ]]; then
 fi
 
 # 截取路径
-IN_CONTAINER_PATH=${ABSOLUTE_PATH#"$BOOKWORM_ENV_PATH"}
+IN_CONTAINER_PATH=${ABSOLUTE_PATH#"$ACE_ENV_PATH"}
 
 # 截取并保存包名
 PKGNAME_GUESS=$(basename "$ABSOLUTE_PATH" .desktop)
 
 # 检查dpkg列表文件
-DPKG_INFO_PATH="$BOOKWORM_ENV_PATH/var/lib/dpkg/info"
+DPKG_INFO_PATH="$ACE_ENV_PATH/var/lib/dpkg/info"
 if [ -f "$DPKG_INFO_PATH/$PKGNAME_GUESS.list" ]; then
     DPKG_LIST_FILE="$DPKG_INFO_PATH/$PKGNAME_GUESS.list"
 elif ls "$DPKG_INFO_PATH/${PKGNAME_GUESS}:*.list" 1> /dev/null 2>&1; then
@@ -45,7 +45,7 @@ fi
 
 # 验证文件并执行操作
 if [ -f "$DPKG_LIST_FILE" ]; then
-    if grep -q "$IN_CONTAINER_PATH" "$DPKG_LIST_FILE" || grep -q "$BOOKWORM_ENV_PATH/opt/apps/$PKGNAME_GUESS/entires/$IN_CONTAINER_PATH.desktop" "$DPKG_LIST_FILE"; then
+    if grep -q "$IN_CONTAINER_PATH" "$DPKG_LIST_FILE" || grep -q "$ACE_ENV_PATH/opt/apps/$PKGNAME_GUESS/entires/$IN_CONTAINER_PATH.desktop" "$DPKG_LIST_FILE"; then
         bookworm-run apt autopurge $PKGNAME_GUESS -y
 		ret=$?
 		if [ "$ret" = "0" ];then
