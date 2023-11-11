@@ -1,0 +1,82 @@
+#!/bin/bash
+
+
+
+# 清除先前的变量值
+unset ABSOLUTE_PATH IN_CONTAINER_PATH PKGNAME_GUESS DPKG_LIST_FILE BOOKWORM_ENV_PATH
+
+# 定义环境路径变量
+BOOKWORM_ENV_PATH="/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env"
+
+# 检查参数个数
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <desktop-file>"
+    exit 1
+fi
+
+# 保存并验证绝对路径
+ABSOLUTE_PATH=$1
+if [[ $ABSOLUTE_PATH != "$BOOKWORM_ENV_PATH"* ]]; then
+    echo "Error: Invalid path. Must start with $BOOKWORM_ENV_PATH"
+    exit 1
+fi
+
+# 验证是否为desktop文件
+if [[ ! $ABSOLUTE_PATH == *.desktop ]]; then
+    echo "Error: The file is not a desktop file."
+    exit 1
+fi
+
+# 截取路径
+IN_CONTAINER_PATH=${ABSOLUTE_PATH#"$BOOKWORM_ENV_PATH"}
+
+# 截取并保存包名
+PKGNAME_GUESS=$(basename "$ABSOLUTE_PATH" .desktop)
+
+# 检查dpkg列表文件
+DPKG_INFO_PATH="$BOOKWORM_ENV_PATH/var/lib/dpkg/info"
+if [ -f "$DPKG_INFO_PATH/$PKGNAME_GUESS.list" ]; then
+    DPKG_LIST_FILE="$DPKG_INFO_PATH/$PKGNAME_GUESS.list"
+elif ls "$DPKG_INFO_PATH/${PKGNAME_GUESS}:*.list" 1> /dev/null 2>&1; then
+    DPKG_LIST_FILE=$(ls "$DPKG_INFO_PATH/${PKGNAME_GUESS}:*.list" | head -n 1)
+else
+    echo "No dpkg list file found for $PKGNAME_GUESS.desktop,try to scan to search for the package"
+fi
+
+# 验证文件并执行操作
+if [ -f "$DPKG_LIST_FILE" ]; then
+    if grep -q "$IN_CONTAINER_PATH" "$DPKG_LIST_FILE" || grep -q "$BOOKWORM_ENV_PATH/opt/apps/$PKGNAME_GUESS/entires/$IN_CONTAINER_PATH.desktop" "$DPKG_LIST_FILE"; then
+        bookworm-run apt autopurge $PKGNAME_GUESS -y
+		ret=$?
+		if [ "$ret" = "0" ];then
+			echo "Operation succeeded."
+		else
+			echo "Operation failed."
+			exit $ret
+		fi
+			
+    else
+        echo "Error: Path not found in the dpkg list file."
+        exit 1
+    fi
+else
+    # 遍历所有list文件
+    for file in "$DPKG_INFO_PATH"/*.list; do
+        if grep -q "$IN_CONTAINER_PATH" "$file"; then
+            PKGNAME_GUESS=$(basename "$file" .list | cut -d':' -f1)
+            bookworm-run apt autopurge $PKGNAME_GUESS -y
+		ret=$?
+		if [ "$ret" = "0" ];then
+			echo "Operation succeeded."
+			exit 0
+		else
+			echo "Operation failed."
+			exit $ret
+		fi
+            
+        fi
+    done
+    echo "Error: No matching package found."
+    exit 1
+fi
+
