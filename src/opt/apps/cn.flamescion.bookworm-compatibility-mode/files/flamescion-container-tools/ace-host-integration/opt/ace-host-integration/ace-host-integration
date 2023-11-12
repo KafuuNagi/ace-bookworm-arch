@@ -1,4 +1,5 @@
 #!/bin/bash
+ACE_dir="/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env"
 function do_integrate(){
 local file=$1
     if [ -f "$file" ]; then
@@ -26,6 +27,7 @@ local file=$1
 for app_dir in /opt/apps/*; do
 	for file in $app_dir/entries/applications/*.desktop;do
 	do_integrate $file
+	host-spawn ln -sf "$ACE_dir/$file" "$ACE_dir/usr/share/applications/"
 	done
 done
 
@@ -33,5 +35,5 @@ done
 for file in /usr/share/applications/*.desktop; do
 do_integrate $file
 done
-
+host-spawn find "$ACE_dir/usr/share/applications/" -xtype l -delete
 
