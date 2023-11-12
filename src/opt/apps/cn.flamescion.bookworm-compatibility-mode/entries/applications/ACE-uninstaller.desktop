@@ -4,7 +4,7 @@ Name=ACE Software Uninstaller
 Name[zh_CN]=ACE软件卸载器
 Comment=用于卸载ACE容器的应用
 Type=Application
-Exec=/home/shenmo-ikun/Desktop/bookworm-compatibility-mode/src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/ace-uninstall-helper-gui
+Exec=/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/ace-uninstall-helper-gui
 Icon=ACE-uninstaller
 Categories=AudioVideo
 
