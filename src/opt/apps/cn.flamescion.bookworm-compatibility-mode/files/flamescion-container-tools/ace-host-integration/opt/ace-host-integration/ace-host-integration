@@ -24,10 +24,12 @@ local file=$1
 
 
 
-for app_dir in /opt/apps/*; do
-	for file in $app_dir/entries/applications/*.desktop;do
+for app_dir in $(ls /opt/apps/); do
+	for file in /opt/apps/$app_dir/entries/applications/*.desktop;do
 	do_integrate $file
-	host-spawn ln -sf "$ACE_dir/$file" "$ACE_dir/usr/share/applications/"
+	DESKTOP_FILE_NAME=$(basename $file)
+	pushd /usr/share/applications
+	ln -sf "../../../opt/apps/$app_dir/entries/applications/$DESKTOP_FILE_NAME" "./"
 	done
 done
 
@@ -35,5 +37,5 @@ done
 for file in /usr/share/applications/*.desktop; do
 do_integrate $file
 done
-host-spawn find "$ACE_dir/usr/share/applications/" -xtype l -delete
+find "/usr/share/applications/" -xtype l -delete
 

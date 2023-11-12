@@ -1,5 +1,5 @@
 Package: ace-host-integration
-Version: 1.1
+Version: 1.2
 Section: misc
 Priority: optional
 Depends: bash
