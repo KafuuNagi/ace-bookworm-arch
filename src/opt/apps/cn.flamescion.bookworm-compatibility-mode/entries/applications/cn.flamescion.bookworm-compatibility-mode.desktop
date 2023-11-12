@@ -1,9 +1,10 @@
 [Desktop Entry]
 Categories=utils
-Exec=/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/bookworm-run %U
+Exec=bookworm-run %U
 Icon=cn.flamescion.bookworm-compatibility-mode
-Name=Bookworm CM
-Name[zh_CN]=书虫兼容模式
+Name=Amber CE
+Name[zh_CN]=ACE兼容环境
+Keywords=BCM,ACE,ace,mode
 StartupNotify=true
 Type=Application
 Terminal=true

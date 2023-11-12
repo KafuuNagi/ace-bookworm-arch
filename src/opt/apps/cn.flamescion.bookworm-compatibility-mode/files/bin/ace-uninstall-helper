@@ -1,7 +1,9 @@
 #!/bin/bash
 
-
-
+if [ "$UID" != "0" ];then
+echo "Need to be run as root."
+exit
+fi
 # 清除先前的变量值
 unset ABSOLUTE_PATH IN_CONTAINER_PATH PKGNAME_GUESS DPKG_LIST_FILE ACE_ENV_PATH
 

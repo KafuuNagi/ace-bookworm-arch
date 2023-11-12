@@ -1,0 +1,49 @@
+#!/bin/bash
+if [ "$UID" != "0" ];then
+pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY  $0
+exit
+fi
+# 定义应用列表文件路径
+ACE_dir="/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env"
+
+# 读取所有.desktop文件，并构造应用列表
+app_list=()
+for file in "$ACE_dir"/usr/share/applications/*.desktop; do
+	if [ ! -e "$file" ];then ##可能是软链接，对主机来说无用
+	file=$ACE_dir$(readlink $file)
+	fi
+    # 读取应用名称和简介
+    name_orig=$(grep -m 1 '^Name=' "$file" | cut -d '=' -f 2)
+    name_i18n=$(grep -m 1 "^Name\[${LANGUAGE}\]\=" "$file" | cut -d '=' -f 2)
+	if [ -z "$name_i18n" ] ;then
+	name=$name_orig
+	else
+	name=$name_i18n
+	fi
+    comment=$(grep -m 1 '^Comment=' "$file" | cut -d '=' -f 2)
+    # 如果没有简介，则显示"N/A"
+    [[ -z "$comment" ]] && comment="N/A"
+    # 添加到应用列表数组
+    app_list+=("false" "$name" "$comment" "$file")
+done
+
+# 使用 Zenity 显示应用列表，并获取用户选择
+selected_apps=$(zenity --list --title "应用列表" --column "是否卸载" --column "应用名称" --column "应用介绍" --column "desktop文件位置" --checklist "${app_list[@]}" --print-column=4 --hide-column=4 --separator=" " --width=800 --height=400)
+
+
+# 检查用户是否做出了选择
+if [ -n "$selected_apps" ]; then
+    # 卸载选中的应用
+    for app_desktop_path in $selected_apps; do
+        ace-uninstall-helper "$app_desktop_path"
+	ret=$?
+	if [ "$ret" != "0" ];then
+	zenity --error --width 768 --text "$app_desktop_path 卸载失败，中止操作\n请手动执行\nsudo ace-uninstall-helper $app_desktop_path \n查看报错！"
+	exit 1
+	fi
+    done
+    zenity --info --text "选定应用已卸载"
+else
+    zenity --info --text "未选择任何应用"
+fi
+

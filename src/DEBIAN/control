@@ -1,8 +1,8 @@
 Package: cn.flamescion.bookworm-compatibility-mode
-Version: 12.3.3
+Version: 12.3.4
 Section: misc
 Priority: optional
-Depends: bubblewrap,flatpak
+Depends: bubblewrap,flatpak,zenity
 Maintainer: shenmo <shenmo@spark-app.store>
 Architecture: arm64
 Description: bwrap wrapper for install and running debs inside a bookworm container

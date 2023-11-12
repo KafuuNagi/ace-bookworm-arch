@@ -4,4 +4,5 @@ export PACKAGE_NAME="$DPKG_MAINTSCRIPT_PACKAGE"
 if [ "$PACKAGE_NAME" = "cn.flamescion.bookworm-compatibility-mode" ];then
 ln -sf /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/bookworm-run /usr/bin/bookworm-run
 ln -sf /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/ace-uninstall-helper /usr/bin/ace-uninstall-helper
+ln -sf /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/ace-uninstall-helper-gui /usr/bin/ace-uninstall-helper-gui
 fi
