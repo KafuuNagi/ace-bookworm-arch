@@ -67,7 +67,7 @@ bwrap --dev-bind / / \
   --ro-bind /usr/share/themes /usr/local/share/themes  \
   --ro-bind /usr/share/icons /usr/local/share/icons  \
   --ro-bind /usr/share/fonts /usr/local/share/fonts  \
-  --hostname bookworm-compatibility-mode \
+  --hostname Amber-CE-Bookworm \
   --unshare-uts \
   --dev-bind /etc/resolv.conf /etc/resolv.conf \
   --cap-add CAP_SYS_ADMIN \

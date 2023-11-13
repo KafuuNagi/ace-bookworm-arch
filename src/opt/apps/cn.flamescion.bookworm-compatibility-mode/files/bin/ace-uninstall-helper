@@ -67,6 +67,7 @@ else
     for file in "$DPKG_INFO_PATH"/*.list; do
         if grep -q "$IN_CONTAINER_PATH" "$file"; then
             PKGNAME_GUESS=$(basename "$file" .list | cut -d':' -f1)
+            echo "Get pkgname $PKGNAME_GUESS, uninstalling..."
             bookworm-run apt autopurge $PKGNAME_GUESS -y
 		ret=$?
 		if [ "$ret" = "0" ];then
