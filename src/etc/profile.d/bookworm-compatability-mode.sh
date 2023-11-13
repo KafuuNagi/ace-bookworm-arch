@@ -9,8 +9,7 @@ if [ -z "$XDG_DATA_DIRS" ]; then
 fi
 
 # Desktop files (used by desktop environments within both X11 and Wayland) are
-# looked for in XDG_DATA_DIRS; make sure it includes the relevant directory for
-# snappy applications' desktop files.
+# looked for in XDG_DATA_DIRS; make sure it includes the relevant directory for ACE
 ACE_path="/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env/usr/share/"
 if [ -n "${XDG_DATA_DIRS##*${ACE_path}}" ] && [ -n "${XDG_DATA_DIRS##*${ACE_path}:*}" ]; then
     export XDG_DATA_DIRS="${ACE_path}:${XDG_DATA_DIRS}"
