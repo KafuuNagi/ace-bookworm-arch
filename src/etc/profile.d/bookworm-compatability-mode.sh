@@ -1,4 +1,18 @@
-export XDG_DATA_DIRS
-APP_ROOT="/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env/usr/share"
-XDG_DATA_DIRS="${APP_ROOT}:/usr/local/share:/usr/share"
-export APP_ROOT
+# shellcheck shell=sh
+
+
+
+# Ensure base distro defaults xdg path are set if nothing filed up some
+# defaults yet.
+if [ -z "$XDG_DATA_DIRS" ]; then
+    export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+fi
+
+# Desktop files (used by desktop environments within both X11 and Wayland) are
+# looked for in XDG_DATA_DIRS; make sure it includes the relevant directory for
+# snappy applications' desktop files.
+bcm_path="/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env/usr/share/"
+if [ -n "${XDG_DATA_DIRS##*${bcm_path}}" ] && [ -n "${XDG_DATA_DIRS##*${bcm_path}:*}" ]; then
+    export XDG_DATA_DIRS="${XDG_DATA_DIRS}:${bcm_path}"
+fi
+
