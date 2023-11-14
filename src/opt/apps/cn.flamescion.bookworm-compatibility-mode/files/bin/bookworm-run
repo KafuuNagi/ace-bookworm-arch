@@ -54,7 +54,7 @@ bwrap --dev-bind / / \
   --setenv LC_ALL "$LC_ALL" \
   --setenv PULSE_SERVER /run/user/$uid/pulse/native \
   --setenv PATH /flamescion-container-tools/bin-override:$PATH \
-  --setenv IS_ACE_ENV=1 \
+  --setenv IS_ACE_ENV "1" \
   --dev-bind $chrootEnvPath/ / \
   --dev-bind /media /media \
   --dev-bind /tmp /tmp \

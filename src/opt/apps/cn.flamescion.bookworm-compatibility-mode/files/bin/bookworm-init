@@ -36,7 +36,7 @@ bwrap --dev-bind $chrootEnvPath/ / \
   --setenv LC_ALL "$LC_ALL" \
   --setenv PULSE_SERVER /run/user/$uid/pulse/native \
   --setenv PATH /flamescion-container-tools/bin-override:$PATH \
-  --setenv IS_ACE_ENV=1 \
+  --setenv IS_ACE_ENV "1" \
   --dev-bind $chrootEnvPath/ / \
   --dev-bind /media /media \
   --dev-bind /tmp /tmp \
@@ -205,6 +205,7 @@ sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ /
   --setenv LC_MONETARY "$LC_MONETARY" \
   --setenv LC_MESSAGES "$LC_MESSAGES" \
   --setenv LC_NUMERIC "$LC_NUMERIC" \
+  --setenv IS_ACE_ENV "1" \
   --setenv LC_TIME "$LC_TIME" \
   --setenv LC_ALL "$LC_ALL" \
   --setenv PULSE_SERVER /run/user/$uid/pulse/native \
