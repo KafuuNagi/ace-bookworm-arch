@@ -42,7 +42,7 @@ if [ -f "$DPKG_INFO_PATH/$PKGNAME_GUESS.list" ]; then
 elif ls "$DPKG_INFO_PATH/${PKGNAME_GUESS}:*.list" 1> /dev/null 2>&1; then
     DPKG_LIST_FILE=$(ls "$DPKG_INFO_PATH/${PKGNAME_GUESS}:*.list" | head -n 1)
 else
-    echo "No dpkg list file found for $PKGNAME_GUESS.desktop,try to scan to search for the package"
+    echo "Warn:No dpkg list file found for $PKGNAME_GUESS.desktop,try to scan to search for the package"
 fi
 
 # 验证文件并执行操作
@@ -53,17 +53,17 @@ if [ -f "$DPKG_LIST_FILE" ]; then
 		ret=$?
 		if [ "$ret" = "0" ];then
 			echo "Operation succeeded."
+			exit 
 		else
 			echo "Operation failed."
 			exit $ret
 		fi
 			
     else
-        echo "Error: Path not found in the dpkg list file."
-        exit 1
+        echo "Warn: Path not found in the dpkg list file,try to scan to search for the package"
     fi
-else
-    # 遍历所有list文件
+fi
+    # 遍历所有list文件 As fallback
     for file in "$DPKG_INFO_PATH"/*.list; do
         if grep -q "$IN_CONTAINER_PATH" "$file"; then
             PKGNAME_GUESS=$(basename "$file" .list | cut -d':' -f1)
@@ -82,5 +82,5 @@ else
     done
     echo "Error: No matching package found."
     exit 1
-fi
+
 
