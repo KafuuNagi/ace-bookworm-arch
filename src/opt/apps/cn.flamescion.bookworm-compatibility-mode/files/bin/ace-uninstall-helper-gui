@@ -23,7 +23,13 @@ for file in "$ACE_dir"/usr/share/applications/*.desktop; do
 	else
 	name=$name_i18n
 	fi
-    comment=$(grep -m 1 '^Comment=' "$file" | cut -d '=' -f 2)
+    comment_orig=$(grep -m 1 '^Comment=' "$file" | cut -d '=' -f 2)
+    comment_i18n=$(grep -m 1 "^Comment\[${LANGUAGE}\]\=" "$file" | cut -d '=' -f 2)
+    if [ -z "$comment_i18n" ] ;then
+	comment=$comment_orig
+	else
+	comment=$comment_i18n
+	fi
     # 如果没有简介，则显示"N/A"
     [[ -z "$comment" ]] && comment="N/A"
     # 添加到应用列表数组
