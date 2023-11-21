@@ -55,23 +55,23 @@ bwrap --dev-bind / / \
   --setenv PATH /flamescion-container-tools/bin-override:$PATH \
   --setenv IS_ACE_ENV "1" \
   --dev-bind $chrootEnvPath/ / \
-  --dev-bind /media /media \
-  --dev-bind /tmp /tmp \
+  --dev-bind-try /media /media \
+  --dev-bind-try /tmp /tmp \
   --dev /dev  \
-  --dev-bind /dev/dri /dev/dri  \
+  --dev-bind-try /dev/dri /dev/dri  \
   --proc /proc  \
   --dev-bind /sys /sys  \
   --dev-bind /run /run  \
   --dev-bind-try /run/user/$uid/pulse /run/user/$uid/pulse  \
   --dev-bind / /host \
-  --ro-bind /usr/share/themes /usr/local/share/themes  \
-  --ro-bind /usr/share/icons /usr/local/share/icons  \
-  --ro-bind /usr/share/fonts /usr/local/share/fonts  \
+  --bind-try /usr/share/themes /usr/local/share/themes  \
+  --bind-try /usr/share/icons /usr/local/share/icons  \
+  --bind-try /usr/share/fonts /usr/local/share/fonts  \
   --hostname Amber-CE-Bookworm \
   --unshare-uts \
-  --dev-bind /etc/resolv.conf /etc/resolv.conf \
+  --dev-bind-try /etc/resolv.conf /etc/resolv.conf \
   --cap-add CAP_SYS_ADMIN \
-  --dev-bind /home /home \
+  --dev-bind-try /home /home \
   bash -c "${container_command}"
 
 
