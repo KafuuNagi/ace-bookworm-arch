@@ -180,7 +180,7 @@ printf "%s:" "${container_user_name}" | chpasswd -e
 
 ## init host-spawn
 unlink /flamescion-container-tools/bin-override/host-spawn
-ln -sfv /flamescion-container-tools/bin-override/host-spawn-`arch` /flamescion-container-tools/bin-override/host-spawn
+ln -sfv /flamescion-container-tools/bin-override/host-spawn-$(uname -m) /flamescion-container-tools/bin-override/host-spawn
 
 ## install host-integration
 
