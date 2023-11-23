@@ -178,6 +178,10 @@ printf "%s:%s" "${container_user_name}" "${temporary_password}" | chpasswd -e
 printf "%s:" "root" | chpasswd -e
 printf "%s:" "${container_user_name}" | chpasswd -e
 
+mkdir -p /usr/share/fonts
+mkdir -p /usr/share/icons
+mkdir -p /usr/share/themes
+
 ## init host-spawn
 unlink /flamescion-container-tools/bin-override/host-spawn
 ln -sfv /flamescion-container-tools/bin-override/host-spawn-$(uname -m) /flamescion-container-tools/bin-override/host-spawn
