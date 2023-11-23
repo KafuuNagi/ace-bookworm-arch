@@ -67,7 +67,7 @@ bwrap --dev-bind / / \
   --dev-bind / /host \
   --ro-bind-try /usr/share/themes /usr/local/share/themes  \
   --ro-bind-try /usr/share/icons /usr/share/icons  \
-  --ro-bind-try /usr/share/fonts /usr/share/fonts  \
+  --ro-bind-try /usr/share/fonts /usr/local/share/fonts  \
   --hostname Amber-CE-Bookworm \
   --unshare-uts \
   --dev-bind-try /etc/resolv.conf /etc/resolv.conf \
