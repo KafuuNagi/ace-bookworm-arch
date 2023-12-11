@@ -23,7 +23,7 @@ exit 1
 fi
 
 cd "`dirname $0`"
-sudo debootstrap --include=apt-utils,bc,curl,dialog,diffutils,findutils,gnupg2,less,libnss-myhostname,libvte-common,lsof,ncurses-base,passwd,pinentry-curses,procps,sudo,time,util-linux,wget,libegl1-mesa,libgl1-mesa-glx,libvulkan1,mesa-vulkan-drivers,locales,libglib2.0-bin --arch=${ARCH} bookworm ./bookworm-env https://mirrors.ustc.edu.cn/debian/ 
+sudo debootstrap --include=apt-utils,bash-completion,bc,curl,dialog,diffutils,findutils,gnupg2,less,libnss-myhostname,libvte-common,lsof,ncurses-base,passwd,pinentry-curses,procps,sudo,time,util-linux,wget,libegl1-mesa,libgl1-mesa-glx,libvulkan1,mesa-vulkan-drivers,locales,libglib2.0-bin --arch=${ARCH} bookworm ./bookworm-env https://mirrors.ustc.edu.cn/debian/ 
 
 
 sudo rm -rf bookworm-env/var/cache/apt/archives/*.deb
