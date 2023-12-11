@@ -1,28 +1,6 @@
 #!/bin/bash
 ACE_dir="/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env"
-function linkDir() {
-    ensureTargetDir() {
-        targetFile=$1
-        t=$(dirname "$targetFile")
-        mkdir -p "$t"
-    }
 
-    source=$1
-    target=$2
-    sourceDir=$(dirname "$source")
-    targetDir=$(dirname "$target")
-    find "$source" -type f | while read sourceFile; do
-        targetFile="$targetDir/${sourceFile#$sourceDir/}"
-        if [ -L "$targetFile" ] && [ "$(readlink "$targetFile")" = "$sourceFile" ]; then
-            continue
-        else
-            rm -f "$targetFile"
-        fi
-
-        ensureTargetDir "$targetFile"
-        ln -s "$sourceFile" "$targetFile"
-    done
-}
 
 function do_integrate(){
 local file=$1
@@ -51,9 +29,7 @@ local file=$1
 for app_dir in $(ls /opt/apps/); do
 	for file in /opt/apps/$app_dir/entries/applications/*.desktop;do
 	do_integrate $file
-	DESKTOP_FILE_NAME=$(basename $file)
-	ln -sf "../../../opt/apps/$app_dir/entries/applications/$DESKTOP_FILE_NAME" "/usr/share/applications/"
-	linkDir "../../../opt/apps/$app_dir/entries/icons" "/usr/share/icons/"
+
 	
 	done
 done
