@@ -6,6 +6,6 @@ Comment=用于卸载ACE容器的应用
 Type=Application
 Exec=/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/ace-uninstall-helper-gui
 Icon=ACE-uninstaller
-Categories=AudioVideo
+Categories=System
 
 # Generated from the DesktopGenerater component of the z-Tools toolkit
