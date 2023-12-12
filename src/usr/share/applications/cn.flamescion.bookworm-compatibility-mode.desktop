@@ -8,3 +8,4 @@ Keywords=BCM,ACE,ace,mode
 StartupNotify=true
 Type=Application
 Terminal=true
+Categories=System
