@@ -22,6 +22,7 @@ local file=$1
     	fi
     
     fi
+    chmod +x $file
 }
 
 
