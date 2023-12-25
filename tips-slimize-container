@@ -8,3 +8,4 @@ rm -rf /var/cache/apt/
 rm -rf /var/lib/aptss/lists/*
 rm -rf /usr/share/doc
 
+#apt install ace-integration in init
