@@ -66,7 +66,7 @@ bwrap --dev-bind / / \
   --dev-bind-try /run/user/$uid/pulse /run/user/$uid/pulse  \
   --dev-bind / /host \
   --ro-bind-try /usr/share/themes /usr/local/share/themes  \
-  --ro-bind-try /usr/share/icons /usr/share/icons  \
+  --ro-bind-try /usr/share/icons /usr/local/share/icons  \
   --ro-bind-try /usr/share/fonts /usr/local/share/fonts  \
   --hostname Amber-CE-Bookworm \
   --unshare-uts \
