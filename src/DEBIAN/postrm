@@ -1,11 +1,7 @@
 #!/bin/bash
 PACKAGE_NAME="$DPKG_MAINTSCRIPT_PACKAGE"
 if [ "$1" = "remove" ] || [ "$1" = "purge" ];then
-if [ "$PACKAGE_NAME" = "cn.flamescion.bookworm-compatibility-mode" ];then
-unlink /usr/bin/bookworm-run
-unlink /usr/bin/ace-uninstall-helper
-unlink /usr/bin/ace-uninstall-helper-gui
-fi
+
 echo "清理卸载残留"
 
 rm -rf /opt/apps/$PACKAGE_NAME
