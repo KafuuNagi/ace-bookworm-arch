@@ -15,7 +15,9 @@
 下面是详细步骤：
 1.安装依赖：sudo apt-get install arch-test debootstrap libnss-mymachines systemd-container
 2.在`src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files`位置进入终端，执行`./build-container.sh amd64`[amd架构，其他架构同理]`
-3.等待编译完成
+3.等待容器打包完成
+4.进入`bookworm-compatibility-mode`目录，执行fakeroot dpkg-deb -b src cn.flamescion.bookworm-compatibility-mode.deb
+5.等待打包完成
 
 
 # Bookworm compatibility mode
@@ -36,4 +38,6 @@ Build the container first then build the package. Container at `src/opt/apps/cn.
 Here are the details:
 1. Install dependencies: sudo apt-get install arch-test debootstrap libnss-mymachines systemd-container
 2. Enter the terminal at `src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files` and execute `./build-container.sh amd64`.[for amd,other arch please change]
-3. Wait for the compilation to complete.
+3. Wait for the container to complete.
+4.Get in to `bookworm-compatibility-mode` dir,run`fakeroot dpkg-deb -b src cn.flamescion.bookworm-compatibility-mode.deb
+5.Wating for complete.
