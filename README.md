@@ -12,8 +12,11 @@
 ## 构建指南
 
 ### Debian
+
 先构建容器再打包，容器位置在`src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files`
+
 下面是详细步骤：
+
 1.安装依赖：sudo apt-get install arch-test debootstrap libnss-mymachines systemd-container
 2.在`src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files`位置进入终端，执行`./build-container.sh amd64`[amd架构，其他架构同理]`
 3.等待容器打包完成
