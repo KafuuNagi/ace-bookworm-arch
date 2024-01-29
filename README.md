@@ -11,6 +11,7 @@
 
 ## 构建指南
 
+### Debian
 先构建容器再打包，容器位置在`src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files`
 下面是详细步骤：
 1.安装依赖：sudo apt-get install arch-test debootstrap libnss-mymachines systemd-container
@@ -19,6 +20,13 @@
 4.进入`bookworm-compatibility-mode`目录，执行fakeroot dpkg-deb -b src cn.flamescion.bookworm-compatibility-mode.deb
 5.等待打包完成
 
+### Fedora
+
+`ACE-rpm`目录下有相关的说明
+
+### Arch
+
+https://bbs.spark-app.store/d/1668-xing-huo-ying-yong-shang-dian-on-ace
 
 # Bookworm compatibility mode
 
@@ -34,6 +42,8 @@ Please use `git clone --recurse-submodules` to obtain the env
 
 ## Build Guide
 
+### Debian
+
 Build the container first then build the package. Container at `src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files`
 Here are the details:
 1. Install dependencies: sudo apt-get install arch-test debootstrap libnss-mymachines systemd-container
@@ -41,3 +51,12 @@ Here are the details:
 3. Wait for the container to complete.
 4.Get in to `bookworm-compatibility-mode` dir,run`fakeroot dpkg-deb -b src cn.flamescion.bookworm-compatibility-mode.deb
 5.Wating for complete.
+
+
+### Fedora
+
+See readme in `ACE-rpm` directory
+
+### Arch
+
+https://bbs.spark-app.store/d/1668-xing-huo-ying-yong-shang-dian-on-ace
