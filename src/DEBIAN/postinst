@@ -2,3 +2,8 @@
 export PACKAGE_NAME="$DPKG_MAINTSCRIPT_PACKAGE"
 /opt/apps/$PACKAGE_NAME/files/bin/bookworm-init
 
+if [ "${PACKAGE_NAME}" = "cn.flamescion.bookworm-compatibility-mode" ];then
+systemctl daemon-reload
+systemctl enable ace-auto-upgrade
+systemctl start ace-auto-upgrade
+fi

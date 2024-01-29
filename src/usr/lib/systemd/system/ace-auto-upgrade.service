@@ -1,0 +1,14 @@
+[Unit]
+Description=Amber CE Auto upgrade
+After=apt-daily.service network.target network-online.target systemd-networkd.service NetworkManager.service connman.service
+
+
+[Service]
+Type=simple
+RemainAfterExit=yes 
+ExecStart=bookworm-run /flamescion-container-tools/ace-upgrader/ace-upgrader
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
