@@ -96,6 +96,7 @@ fi
 
 if [  $(which aptss)  ];then
 APT_COMMAND=aptss
+/usr/bin/apt update
 log.info "Using aptss to operate the upgrade process since we detect it."
 elif [ -e /usr/bin/apt ];then
 APT_COMMAND=/usr/bin/apt
@@ -104,6 +105,7 @@ else
 log.error "Nope we support debian only now"
 exit -1
 fi
+
 ${APT_COMMAND} update
 
 updatetext=`${APT_COMMAND} update 2>&1`
@@ -168,3 +170,5 @@ user=$(who | awk '{print $1}' | head -n 1)
 	log.info "ACE环境中有 $update_app_number 个软件包可升级，正在自动升级"
 notify-send -a cn.flamescion.bookworm-compatibility-mode "ACE 兼容环境" "ACE环境中有 $update_app_number 个软件包可升级，正在自动升级"
 
+
+${APT_COMMAND} full-upgrade
