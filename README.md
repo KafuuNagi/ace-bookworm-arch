@@ -3,7 +3,7 @@
 
 # Bookworm compatibility mode
 
-(中文)[./README.zh.md]
+[中文](README.zh.md)
 
 Bookworm compatibility mode is a part of `Amber Compatability Environment(ACE)`
 
