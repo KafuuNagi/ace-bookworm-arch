@@ -1,10 +1,9 @@
-# 书虫兼容模式
-书虫兼容模式，是`琥珀兼容环境(ACE)`的一部分
-
 
 
 
 # Bookworm compatibility mode
+
+(中文)[./README.zh.md]
 
 Bookworm compatibility mode is a part of `Amber Compatability Environment(ACE)`
 
