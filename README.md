@@ -9,6 +9,16 @@
 
 请使用 `git clone --recurse-submodules` 来获取
 
+## 安装指南
+
+### 快捷安装 (Debian)
+
+https://bbs.spark-app.store/d/1668-xing-huo-ying-yong-shang-dian-on-ace
+
+### 手动安装（Debian/Fedora/Arch)
+
+http://core.shenmo.tech:38324/index.php?share/folder&user=1&sid=kr8z6Fqf
+
 ## 构建指南
 
 ### Debian
@@ -25,11 +35,14 @@
 
 ### Fedora
 
-`ACE-rpm`目录下有相关的说明
+请前往 https://gitee.com/amber-compatability-environment/ace-rpm
 
 ### Arch
 
-https://bbs.spark-app.store/d/1668-xing-huo-ying-yong-shang-dian-on-ace
+`yay -S cn.flamescion.bookworm-compatibility-mode`
+
+---
+
 
 # Bookworm compatibility mode
 
@@ -42,6 +55,18 @@ With the help of bubblewrap, a super tiny container solution, you can run a `Deb
 Bookworm compatibility mode allows you to use Debian 12 applications on deepin or UniontechOS using bwrap containers, providing you with a better user experience!
 
 Please use `git clone --recurse-submodules` to obtain the env
+
+
+## Install Guide
+
+
+### Quick Install (Debian)
+
+https://bbs.spark-app.store/d/1668-xing-huo-ying-yong-shang-dian-on-ace
+
+### Manual Install（Debian/Fedora/Arch)
+
+http://core.shenmo.tech:38324/index.php?share/folder&user=1&sid=kr8z6Fqf
 
 ## Build Guide
 
@@ -58,8 +83,8 @@ Here are the details:
 
 ### Fedora
 
-See readme in `ACE-rpm` directory
+See https://gitee.com/amber-compatability-environment/ace-rpm
 
 ### Arch
 
-https://bbs.spark-app.store/d/1668-xing-huo-ying-yong-shang-dian-on-ace
+`yay -S cn.flamescion.bookworm-compatibility-mode`
