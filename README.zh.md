@@ -19,7 +19,7 @@ https://bbs.spark-app.store/d/1668-xing-huo-ying-yong-shang-dian-on-ace
 
 ### 手动安装（Debian/Fedora/Arch)
 
-http://core.shenmo.tech:38324/index.php?share/folder&user=1&sid=kr8z6Fqf
+https://share.shenmo.tech:23333/index.php?share/folder&user=1&sid=kr8z6Fqf
 
 ## 构建指南
 
