@@ -23,20 +23,6 @@ non_root_user=$(who  | awk '{print $1}' | head -n 1)
 uid=$(id -u $non_root_user)
 
 
-#### This part is for args pharm
-if [ "$1" = "" ];then
-container_command="bash"
-else
-container_command="$1"
-shift
-for arg in "$@"; do
-        arg="$(echo "${arg}x" | sed 's|'\''|'\'\\\\\'\''|g')"
-        arg="${arg%x}"
-        container_command="${container_command} '${arg}'"
-done
-fi
-
-
 bwrap --dev-bind / / \
   bwrap \
   --setenv LANG "$LANG" \
