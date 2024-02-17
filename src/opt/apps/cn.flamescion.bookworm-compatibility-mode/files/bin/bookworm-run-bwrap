@@ -1,0 +1,72 @@
+#!/bin/bash
+
+curdir=`realpath $0`
+parent_dir=`dirname $curdir`
+pparent_dir=`dirname $parent_dir`
+ppparent_dir=`dirname $pparent_dir`
+PKGNAME=`basename $ppparent_dir`
+export PACKAGE_NAME=$PKGNAME
+chrootEnvPath=/opt/apps/$PKGNAME/files/bookworm-env
+
+
+if [ ! -e $chrootEnvPath/finish.flag ];then
+
+if [ "$(id -u)" = "0" ]; then
+    `dirname $chrootEnvPath`/bin/bookworm-init
+else
+pkexec `dirname $chrootEnvPath`/bin/bookworm-init
+fi
+
+
+fi
+non_root_user=$(who  | awk '{print $1}' | head -n 1)
+uid=$(id -u $non_root_user)
+
+
+#### This part is for args pharm
+if [ "$1" = "" ];then
+container_command="bash"
+else
+container_command="$1"
+shift
+for arg in "$@"; do
+        arg="$(echo "${arg}x" | sed 's|'\''|'\'\\\\\'\''|g')"
+        arg="${arg%x}"
+        container_command="${container_command} '${arg}'"
+done
+fi
+
+
+bwrap --dev-bind / / \
+  bwrap \
+  --setenv LANG "$LANG" \
+  --setenv LC_COLLATE "$LC_COLLATE" \
+  --setenv LC_CTYPE "$LC_CTYPE" \
+  --setenv LC_MONETARY "$LC_MONETARY" \
+  --setenv LC_MESSAGES "$LC_MESSAGES" \
+  --setenv LC_NUMERIC "$LC_NUMERIC" \
+  --setenv LC_TIME "$LC_TIME" \
+  --setenv LC_ALL "$LC_ALL" \
+  --setenv PULSE_SERVER /run/user/$uid/pulse/native \
+  --setenv PATH /flamescion-container-tools/bin-override:$PATH \
+  --setenv IS_ACE_ENV "1" \
+  --dev-bind $chrootEnvPath/ / \
+  --dev-bind-try /media /media \
+  --dev-bind-try /tmp /tmp \
+  --dev /dev  \
+  --dev-bind-try /dev/dri /dev/dri  \
+  --proc /proc  \
+  --dev-bind /sys /sys  \
+  --dev-bind /run /run  \
+  --dev-bind-try /run/user/$uid/pulse /run/user/$uid/pulse  \
+  --dev-bind / /host \
+  --ro-bind-try /usr/share/themes /usr/local/share/themes  \
+  --ro-bind-try /usr/share/icons /usr/local/share/icons  \
+  --ro-bind-try /usr/share/fonts /usr/local/share/fonts  \
+  --hostname Amber-CE-Bookworm \
+  --unshare-uts \
+  --dev-bind-try /etc/resolv.conf /etc/resolv.conf \
+  --dev-bind-try /home /home \
+  /usr/bin/bwrap "$@"
+
+
