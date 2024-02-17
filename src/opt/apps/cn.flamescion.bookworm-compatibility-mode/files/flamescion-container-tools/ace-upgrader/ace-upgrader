@@ -104,7 +104,7 @@ else
 log.error "Nope we support debian only now"
 exit -1
 fi
-
+${APT_COMMAND} clean
 ${APT_COMMAND} update
 
 updatetext=`${APT_COMMAND} update 2>&1`
