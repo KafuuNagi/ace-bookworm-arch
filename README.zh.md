@@ -13,9 +13,9 @@
 
 ## 安装指南
 
-### 快捷安装 (Debian)
+### 快捷安装 (需要安装星火应用商店)
 
-https://bbs.spark-app.store/d/1668-xing-huo-ying-yong-shang-dian-on-ace
+[spk://store/tools/cn.flamescion.bookworm-compatibility-mode/](https://spark-store-project.gitee.io/spk-resolv/?spk=spk://store/tools/cn.flamescion.bookworm-compatibility-mode/)
 
 ### 手动安装（Debian/Fedora/Arch)
 
