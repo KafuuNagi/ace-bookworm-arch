@@ -19,9 +19,9 @@ Please use `git clone --recurse-submodules` to obtain the env
 ## Install Guide
 
 
-### Quick Install (Debian)
+### Quick Install (Need to install Spark Store first)
 
-https://bbs.spark-app.store/d/1668-xing-huo-ying-yong-shang-dian-on-ace
+[spk://store/tools/cn.flamescion.bookworm-compatibility-mode/](https://spark-store-project.gitee.io/spk-resolv/?spk=spk://store/tools/cn.flamescion.bookworm-compatibility-mode/)
 
 ### Manual Install（Debian/Fedora/Arch)
 
