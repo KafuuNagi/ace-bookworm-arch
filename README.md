@@ -11,7 +11,7 @@ Amber Compatability Environment is a container app packaging and distributing so
 
 With the help of bubblewrap, a super tiny container solution, you can run a `Debian 12` container in almost every linux distrobution. When you can not launch or pack an `Appimage` App, using Bookworm compatibility mode can allow you to pack the app in a newer environment and also be able to run on more distrobutions. It is a good choice! 
 
-Bookworm compatibility mode allows you to use Debian 12 applications on deepin or UniontechOS using bwrap containers, providing you with a better user experience!
+ **You need to logout or reboot your computer to show the entries in launcher app list if it's your first time using ACE.** 
 
 Please use `git clone --recurse-submodules` to obtain the env
 
