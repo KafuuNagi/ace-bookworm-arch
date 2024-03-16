@@ -148,7 +148,7 @@ for var in "${EXTRA_SCRIPTS[@]}"; do
 done
 
 # 添加最终的 bash 命令
-add_command "/usr/bin/bwrap \"${container_command}\""
+add_command "bash -c \"/usr/bin/bwrap ${container_command}\""
 
 # 输出完整的 EXEC_COMMAND 以查看
 # echo "${EXEC_COMMAND}"
