@@ -114,12 +114,17 @@ BIND_DIRS=(
     "--ro-bind-try /usr/share/themes /usr/local/share/themes"
     "--ro-bind-try /usr/share/icons /usr/local/share/icons"
     "--ro-bind-try /usr/share/fonts /usr/local/share/fonts"
+    "--ro-bind-try $(realpath /etc/localtime) /etc/localtime"
+    "--dev-bind-try /etc/resolv.conf /etc/resolv.conf"
+    "--dev-bind-try /home /home"
+
+)
+EXTRA_ARGS=(
     "--hostname Amber-CE-Bookworm"
     "--unshare-uts"
-    "--dev-bind-try /etc/resolv.conf /etc/resolv.conf"
     "--cap-add CAP_SYS_ADMIN"
-    "--dev-bind-try /home /home"
 )
+
 EXTRA_SCRIPTS=(
     cursor_theme_dir_integration
 )
@@ -131,6 +136,10 @@ for var in "${ENV_VARS[@]}"; do
 done
 
 for var in "${BIND_DIRS[@]}"; do
+    add_command "$var"
+done
+
+for var in "${EXTRA_ARGS[@]}"; do
     add_command "$var"
 done
 
