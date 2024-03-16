@@ -25,8 +25,13 @@ fi
 
 # 验证是否为desktop文件
 if [[ ! $ABSOLUTE_PATH == *.desktop ]]; then
-    echo "Error: The file is not a desktop file."
-    exit 1
+	if [ ! -e $ABSOLUTE_PATH ];then
+		echo "$ABSOLUTE_PATH does not exist. May have already been uninstalled. Ignore it."
+		exit
+	else
+    		echo "Error: The file is not a desktop file."
+    		exit 1
+	fi
 fi
 
 # 截取路径

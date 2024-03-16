@@ -354,4 +354,4 @@ sudo -u $(who | awk '{print $1}' | head -n 1) bwrap --dev-bind $chrootEnvPath/ /
   locale-gen
 
 chown -R root $chrootEnvPath
-
+chmod 777 -R $chrootEnvPath /usr/share/icons
