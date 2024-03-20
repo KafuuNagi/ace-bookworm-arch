@@ -49,8 +49,8 @@ local file=$1
     		echo "$file is detected. Processing host system integration..."
     		sed -i 's|^Exec=\(.*\)|Exec=bookworm-run \1|' "$file"
         	sed -i '/^TryExec=/d' "$file"
-        	sed -i '/^Name=/ s/$/ (ACE-Integration)/' "$file"
-            	sed -i "/^Name\[${LANGUAGE}\]=/ s/\$/ (ACE-Integration)/" "$file"
+        	sed -i '/^Name=/ s/$/ (ACE)/' "$file"
+            	sed -i "/^Name\[${LANGUAGE}\]=/ s/\$/ (ACE)/" "$file"
             	icon_line=$(grep "^Icon=" "$file")
             	if [[ "$icon_line" == "Icon=/"* ]]; then
     			# 如果Icon=后面接的是/，则添加前缀
