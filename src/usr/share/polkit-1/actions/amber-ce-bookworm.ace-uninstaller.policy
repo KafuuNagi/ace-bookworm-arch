@@ -2,17 +2,17 @@
 <!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
  "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
 <policyconfig>
-    <vendor>cn.flamescion.ace-uninstaller</vendor>
+    <vendor>amber-ce-bookworm.ace-uninstaller</vendor>
     <icon_name>x-package-repository</icon_name>
-    <action id="cn.flamescion.ace-uninstaller">
-        <description>运行cn.flamescion.ace-uninstaller需要权限</description>
-        <message>要使用cn.flamescion.ace-uninstaller需要权限</message>
+    <action id="amber-ce-bookworm.ace-uninstaller">
+        <description>运行amber-ce-bookworm.ace-uninstaller需要权限</description>
+        <message>要使用amber-ce-bookworm.ace-uninstaller需要权限</message>
         <defaults>
             <allow_any>yes</allow_any>
             <allow_inactive>yes</allow_inactive>
             <allow_active>yes</allow_active>
         </defaults>
-        <annotate key="org.freedesktop.policykit.exec.path">/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bin/ace-uninstall-helper-gui</annotate>
+        <annotate key="org.freedesktop.policykit.exec.path">/opt/apps/amber-ce-bookworm/files/bin/ace-bookworm-uninstall-helper-gui</annotate>
         <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
     </action>
 </policyconfig>

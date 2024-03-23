@@ -166,10 +166,10 @@ fi
 
 user=$(who | awk '{print $1}' | head -n 1)
 
-	log.info "ACE环境中有 $update_app_number 个软件包可升级，正在自动升级"
-notify-send -a cn.flamescion.bookworm-compatibility-mode "ACE兼容环境" "ACE环境中有${update_app_number}个软件包可升级，执行自动升级..."
+	log.info "ACE Bookworm环境中有 $update_app_number 个软件包可升级，正在自动升级"
+notify-send -a amber-ce-bookworm "ACE兼容环境" "ACE环境中有${update_app_number}个软件包可升级，执行自动升级..."
 
 ${APT_COMMAND} clean
 ${APT_COMMAND} full-upgrade -y
 ${APT_COMMAND} clean
-notify-send -a cn.flamescion.bookworm-compatibility-mode "ACE兼容环境" "自动升级结束"
+notify-send -a amber-ce-bookworm "ACE兼容环境" "自动升级结束"

@@ -11,9 +11,9 @@ chrootEnvPath=/opt/apps/$PKGNAME/files/bookworm-env
 if [ ! -e $chrootEnvPath/finish.flag ];then
 
 if [ "$(id -u)" = "0" ]; then
-    `dirname $chrootEnvPath`/bin/bookworm-init
+    `dirname $chrootEnvPath`/bin/ace-init
 else
-pkexec `dirname $chrootEnvPath`/bin/bookworm-init
+pkexec `dirname $chrootEnvPath`/bin/ace-init
 fi
 
 

@@ -4,7 +4,7 @@ pkexec $0
 exit
 fi
 # 定义应用列表文件路径
-ACE_dir="/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env"
+ACE_dir="/opt/apps/amber-ce-bookworm/files/bookworm-env"
 
 # 读取所有.desktop文件，并构造应用列表
 app_list=()
@@ -44,7 +44,7 @@ selected_apps=$(zenity --list --title "应用列表" --column "是否卸载" --c
 if [ -n "$selected_apps" ]; then
     # 卸载选中的应用
     (for app_desktop_path in $selected_apps; do
-        ace-uninstall-helper "$app_desktop_path"
+        ace-bookworm-uninstall-helper "$app_desktop_path"
 	ret=$?
 	if [ "$ret" != "0" ];then
 	zenity --error --width 768 --text "$app_desktop_path 卸载失败，中止操作\n请手动执行\nsudo ace-uninstall-helper $app_desktop_path \n查看报错！"

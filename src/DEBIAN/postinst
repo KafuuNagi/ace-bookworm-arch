@@ -1,9 +1,9 @@
 #!/bin/bash
 export PACKAGE_NAME="$DPKG_MAINTSCRIPT_PACKAGE"
-/opt/apps/$PACKAGE_NAME/files/bin/bookworm-init
+/opt/apps/$PACKAGE_NAME/files/bin/ace-init
 
-if [ "${PACKAGE_NAME}" = "cn.flamescion.bookworm-compatibility-mode" ];then
+if [ "${PACKAGE_NAME}" = "amber-ce-bookworm" ];then
 systemctl daemon-reload
-systemctl enable ace-auto-upgrade
-systemctl start ace-auto-upgrade
+systemctl enable ace-bookworm-auto-upgrade
+systemctl start ace-bookworm-auto-upgrade
 fi

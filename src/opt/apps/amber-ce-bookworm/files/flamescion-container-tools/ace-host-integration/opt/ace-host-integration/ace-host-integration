@@ -49,12 +49,12 @@ local file=$1
     		echo "$file is detected. Processing host system integration..."
     		sed -i 's|^Exec=\(.*\)|Exec=bookworm-run \1|' "$file"
         	sed -i '/^TryExec=/d' "$file"
-        	sed -i '/^Name=/ s/$/ (ACE)/' "$file"
-            	sed -i "/^Name\[${LANGUAGE}\]=/ s/\$/ (ACE)/" "$file"
+        	sed -i '/^Name=/ s/$/ (Bookworm)/' "$file"
+            	sed -i "/^Name\[${LANGUAGE}\]=/ s/\$/ (Bookworm)/" "$file"
             	icon_line=$(grep "^Icon=" "$file")
             	if [[ "$icon_line" == "Icon=/"* ]]; then
     			# 如果Icon=后面接的是/，则添加前缀
-    			sed -i 's|^Icon=/|Icon=/opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env/|' "$file"
+    			sed -i 's|^Icon=/|Icon=/opt/apps/amber-ce-bookworm/files/bookworm-env/|' "$file"
     		fi
 		
     	fi

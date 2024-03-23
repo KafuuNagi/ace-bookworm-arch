@@ -1,0 +1,2 @@
+#!/bin/bash
+host-spawn /opt/apps/amber-ce-bookworm/files/bin/bookworm-run-bwrap $@

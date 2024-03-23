@@ -76,6 +76,9 @@ export container_user_uid="$(sudo -u $non_root_user id -ru)"
 
 
 bookworm-run bash /flamescion-container-tools/container-init/init.sh
+rm $chrootEnvPath/etc/localtime
+cp $(realpath /etc/localtime) $chrootEnvPath/etc/localtime
+chmod 777 $chrootEnvPath/etc/localtime 
 bookworm-run cp /host/etc/locale.gen /etc/locale.gen && locale-gen
 bookworm-run touch /finish.flag
 bookworm-run apt clean
