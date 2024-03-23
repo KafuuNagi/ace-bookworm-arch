@@ -4,7 +4,7 @@ pkexec $0
 exit
 fi
 # 定义应用列表文件路径
-ACE_dir="/opt/apps/amber-ce-bookworm/files/bookworm-env"
+ACE_dir="/opt/apps/amber-ce-bookworm/files/ace-env"
 
 # 读取所有.desktop文件，并构造应用列表
 app_list=()

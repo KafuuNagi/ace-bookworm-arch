@@ -6,7 +6,7 @@ pparent_dir=`dirname $parent_dir`
 ppparent_dir=`dirname $pparent_dir`
 PKGNAME=`basename $ppparent_dir`
 export PACKAGE_NAME=$PKGNAME
-chrootEnvPath=/opt/apps/$PKGNAME/files/bookworm-env
+chrootEnvPath=/opt/apps/$PKGNAME/files/ace-env
 
 if [ ! -e $chrootEnvPath/finish.flag ];then
 

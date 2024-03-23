@@ -8,7 +8,7 @@ fi
 unset ABSOLUTE_PATH IN_CONTAINER_PATH PKGNAME_GUESS DPKG_LIST_FILE ACE_ENV_PATH
 
 # 定义环境路径变量
-ACE_ENV_PATH="/opt/apps/amber-ce-bookworm/files/bookworm-env"
+ACE_ENV_PATH="/opt/apps/amber-ce-bookworm/files/ace-env"
 
 # 检查参数个数
 if [ "$#" -ne 1 ]; then

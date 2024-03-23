@@ -13,7 +13,7 @@ PKGNAME=`basename $ppparent_dir`
 else
 PKGNAME=$PACKAGE_NAME
 fi
-chrootEnvPath=/opt/apps/$PKGNAME/files/bookworm-env
+chrootEnvPath=/opt/apps/$PKGNAME/files/ace-env
 if [ ! -e $chrootEnvPath ];then
 echo "Uncompress the env...."
 tar  -xvf $chrootEnvPath.tar.xz -C /opt/apps/$PKGNAME/files/
