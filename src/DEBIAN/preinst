@@ -6,6 +6,6 @@ if [ "$(arch)" != "loongarch64" ];then
 mv /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/ace-env
 ln -sfv /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/ace-env /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env
 else
-rm -rf /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env
+mv /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env /opt/apps/amber-ce-loongnix/files/ace-env 
 fi
 fi
