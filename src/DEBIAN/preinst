@@ -1,10 +1,9 @@
 #!/bin/bash
 
-if [ "${PACKAGE_NAME}" = "amber-ce-bookworm" ];then
+if [ "${PACKAGE_NAME}" = "cn.flamescion.bookworm-compatibility-mode" ];then
 if [ -e /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env ];then
 if [ "$(arch)" != "loongarch64" ];then
-mv /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env /opt/apps/amber-ce-bookworm/files/ace-env
-rm -rf /opt/apps/cn.flamescion.bookworm-compatibility-mode
+mv /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/ace-env
 fi
 fi
 fi

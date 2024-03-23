@@ -1,7 +1,7 @@
 #!/bin/bash
 PACKAGE_NAME="$DPKG_MAINTSCRIPT_PACKAGE"
 
-if [ "${PACKAGE_NAME}" = "amber-ce-bookworm" ];then
+if [ "${PACKAGE_NAME}" = "cn.flamescion.bookworm-compatibility-mode" ];then
 systemctl stop ace-bookworm-auto-upgrade
 systemctl disable ace-bookworm-auto-upgrade
 fi
