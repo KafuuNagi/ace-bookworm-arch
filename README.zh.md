@@ -22,17 +22,19 @@
 https://share.shenmo.tech:23333/index.php?share/folder&user=1&sid=kr8z6Fqf
 
 ## 构建指南
+这个构建指南是从仓库的源代码进行虫书虚拟模式的构建
 
 ### Debian
 
 先构建容器再打包，容器位置在`src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files`
 
 下面是详细步骤：
-
-1. 安装依赖：sudo apt-get install arch-test debootstrap libnss-mymachines systemd-container
-2. 在`src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files`位置进入终端，执行`./build-container.sh amd64`[amd架构，其他架构同理]`
+1. 打开终端，进入家目录
+2. 安装依赖：`sudo apt-get install arch-test debootstrap libnss-mymachines systemd-container`
+3. `git clone https://gitee.com/amber-compatability-environment/bookworm-compatibility-mode`
+2. `cd ./bookworm-compatibility-mode/src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files`，执行`./build-container.sh amd64`[amd架构，其他架构同理]`
 3. 等待容器打包完成
-4. 进入`bookworm-compatibility-mode`目录，执行`fakeroot dpkg-deb -b src .`
+4. 执行 `cd ~ && cd bookworm-compatibility-mode` 命令进入`bookworm-compatibility-mode`目录，执行`fakeroot dpkg-deb -b src .`
 5. 等待打包完成
 
 ### Fedora
