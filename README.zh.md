@@ -21,6 +21,12 @@
 
 https://share.shenmo.tech:23333/index.php?share/folder&user=1&sid=kr8z6Fqf
 
+(Ubuntu 18.04/deepin 15需要先安装依赖)
+
+https://cdn.d.store.deepinos.org.cn/store/depends/bubblewrap_0.3.1-4_amd64.deb   x86
+
+https://cdn.d.store.deepinos.org.cn/aarch64-store/depends/bubblewrap_0.3.1-4_arm64.deb arm64
+
 ## 构建指南
 
 ### Debian
