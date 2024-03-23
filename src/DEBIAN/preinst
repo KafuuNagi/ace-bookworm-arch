@@ -9,3 +9,4 @@ else
 mv /opt/apps/cn.flamescion.bookworm-compatibility-mode/files/bookworm-env /opt/apps/amber-ce-loongnix/files/ace-env 
 fi
 fi
+fi
