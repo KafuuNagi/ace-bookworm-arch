@@ -121,9 +121,8 @@ ln -sfv /flamescion-container-tools/bin-override/host-spawn-$(uname -m) /flamesc
 
 apt install --reinstall /flamescion-container-tools/ace-host-integration.deb
 
-
-
-echo "ACE: Timezone Integration"
-rm /etc/localtime
-cp $(realpath /host/etc/localtime) /etc/localtime
-chmod 777 /etc/localtime 
+cd /
+mkdir -p /flamescion-container-tools/data-dir
+cd /flamescion-container-tools/data-dir/
+ln -sfv ../../usr/share/applications/ .
+ln -sfv ../../usr/share/icons/ .
