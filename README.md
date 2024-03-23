@@ -27,6 +27,13 @@ Please use `git clone --recurse-submodules` to obtain the env
 
 https://share.shenmo.tech:23333/index.php?share/folder&user=1&sid=kr8z6Fqf
 
+(Dependencies are needed to upgrade for Ubuntu 18.04/deepin 15)
+
+https://cdn.d.store.deepinos.org.cn/store/depends/bubblewrap_0.3.1-4_amd64.deb   x86
+
+https://cdn.d.store.deepinos.org.cn/aarch64-store/depends/bubblewrap_0.3.1-4_arm64.deb arm64
+
+
 ## Build Guide
 
 ### Debian
