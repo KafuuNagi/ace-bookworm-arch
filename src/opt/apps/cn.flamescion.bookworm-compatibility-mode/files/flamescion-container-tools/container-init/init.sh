@@ -17,9 +17,7 @@ fi
                 printf "\"%s\" ALL = (root) NOPASSWD:ALL\n" "${container_user_name}" >> /etc/sudoers.d/sudoers
         fi
 
-chmod 440 /etc/sudo.conf
-chmod 440 /etc/sudoers
-chmod 440 /etc/sudoers.d
+
 
 
 printf "ACE: Setting up groups...\n"
