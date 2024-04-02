@@ -43,10 +43,10 @@ https://cdn.d.store.deepinos.org.cn/aarch64-store/depends/bubblewrap_0.3.1-4_arm
 
 ### Fedora
 
-请前往 https://gitee.com/amber-compatability-environment/ace-rpm
+请前往 https://gitee.com/amber-ce/ace-rpm
 
 ### Arch
 
-`yay -S cn.flamescion.bookworm-compatibility-mode`
+`yay -S amber-ce-bookworm`
 
 ---
