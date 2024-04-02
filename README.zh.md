@@ -38,7 +38,7 @@ https://cdn.d.store.deepinos.org.cn/aarch64-store/depends/bubblewrap_0.3.1-4_arm
 1. 安装依赖：sudo apt-get install arch-test debootstrap libnss-mymachines systemd-container
 2. 在`src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files`位置进入终端，执行`./build-container.sh amd64`[amd架构，其他架构同理]`
 3. 等待容器打包完成
-4. 进入`bookworm-compatibility-mode`目录，执行`fakeroot dpkg-deb -b src .`
+4. 进入`amber-ce-bookworm`目录，执行`fakeroot dpkg-deb -b src .`
 5. 等待打包完成
 
 ### Fedora
