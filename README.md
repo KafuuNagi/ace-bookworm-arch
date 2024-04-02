@@ -43,14 +43,14 @@ Here are the details:
 1. Install dependencies: sudo apt-get install arch-test debootstrap libnss-mymachines systemd-container
 2. Enter the terminal at `src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files` and execute `./build-container.sh amd64`.[for amd,other arch please change]
 3. Wait for the container to complete.
-4.Get in to `bookworm-compatibility-mode` dir,run`fakeroot dpkg-deb -b src .`
+4.Get in to `amber-ce-bookworm` dir,run`fakeroot dpkg-deb -b src .`
 5.Wating for complete.
 
 
 ### Fedora
 
-See https://gitee.com/amber-compatability-environment/ace-rpm
+See https://gitee.com/amber-ce/ace-rpm
 
 ### Arch
 
-`yay -S cn.flamescion.bookworm-compatibility-mode`
+`yay -S amber-ce-bookworm`
