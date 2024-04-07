@@ -33,6 +33,11 @@ https://cdn.d.store.deepinos.org.cn/store/depends/bubblewrap_0.3.1-4_amd64.deb  
 
 https://cdn.d.store.deepinos.org.cn/aarch64-store/depends/bubblewrap_0.3.1-4_arm64.deb arm64
 
+### Amber-CE x86
+
+Use LAT to run a x86 bookworm container. Can install x86 debs and run x86 apps 
+
+https://pan.shenmo.tech/index.php?share/folder&user=1&sid=qnJAY5BE
 
 ## Build Guide
 
