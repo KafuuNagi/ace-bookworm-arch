@@ -27,6 +27,10 @@ https://cdn.d.store.deepinos.org.cn/store/depends/bubblewrap_0.3.1-4_amd64.deb  
 
 https://cdn.d.store.deepinos.org.cn/aarch64-store/depends/bubblewrap_0.3.1-4_arm64.deb arm64
 
+### Amber-CE x86
+
+利用 LAT 运行的x86容器，可安装和运行x86的deb  https://pan.shenmo.tech/index.php?share/folder&user=1&sid=qnJAY5BE
+
 ## 构建指南
 
 ### Debian
