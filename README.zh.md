@@ -19,7 +19,7 @@
 
 ### 手动安装（Debian/Fedora/Arch)
 
-https://share.shenmo.tech:23333/index.php?share/folder&user=1&sid=kr8z6Fqf
+https://pan.shenmo.tech/index.php?share/folder&user=1&sid=Ye6kyxQE
 
 (Ubuntu 18.04/deepin 15需要先安装依赖)
 
