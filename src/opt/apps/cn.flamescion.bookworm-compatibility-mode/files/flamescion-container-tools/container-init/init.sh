@@ -123,8 +123,9 @@ ln -sfv /flamescion-container-tools/bin-override/host-spawn-$(uname -m) /flamesc
 
 apt install --reinstall /flamescion-container-tools/ace-host-integration.deb
 
-cd /
-mkdir -p /flamescion-container-tools/data-dir
+
 cd /flamescion-container-tools/data-dir/
 ln -sfv ../../usr/share/applications/ .
 ln -sfv ../../usr/share/icons/ .
+update-desktop-database /usr/share/applications || true
+update-mime-database /usr/share/mime || true
