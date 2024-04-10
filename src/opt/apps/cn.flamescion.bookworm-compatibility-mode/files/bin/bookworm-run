@@ -98,6 +98,7 @@ ENV_VARS=(
     "PULSE_SERVER /run/user/\$uid/pulse/native"
     "PATH /flamescion-container-tools/bin-override:\$PATH"
     "IS_ACE_ENV 1"
+    "XDG_DATA_DIRS /flamescion-container-tools/additional-data-dir-in-container:\$XDG_DATA_DIRS"
 )
 
 BIND_DIRS=(
