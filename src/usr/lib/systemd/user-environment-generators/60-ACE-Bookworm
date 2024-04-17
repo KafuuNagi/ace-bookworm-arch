@@ -12,6 +12,6 @@ fi
 # looked for in XDG_DATA_DIRS; make sure it includes the relevant directory for ACE
 ACE_path="/opt/apps/amber-ce-bookworm/files/ace-env/flamescion-container-tools/data-dir/"
 if [ -n "${XDG_DATA_DIRS##*${ACE_path}}" ] && [ -n "${XDG_DATA_DIRS##*${ACE_path}:*}" ]; then
-    export XDG_DATA_DIRS="${ACE_path}:${XDG_DATA_DIRS}"
+    export XDG_DATA_DIRS="${XDG_DATA_DIRS}:${ACE_path}"
 fi
 
