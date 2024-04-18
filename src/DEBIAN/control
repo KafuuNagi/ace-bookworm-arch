@@ -1,5 +1,5 @@
 Package: cn.flamescion.bookworm-compatibility-mode
-Version: 12.4.11
+Version: 12.4.12
 Section: misc
 Priority: optional
 Depends: bubblewrap,flatpak,zenity,policykit-1,gcc,systemd
