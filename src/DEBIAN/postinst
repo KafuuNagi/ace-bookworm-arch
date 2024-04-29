@@ -30,7 +30,7 @@ if [ "$apparmor_status" == "active" ]; then
       
 systemctl reload apparmor
 else  
-    echo "AppArmor 服务没有运行。无需冲在配置"  
+    echo "AppArmor 服务没有运行。无需重载配置"  
 fi
 
 true
