@@ -20,4 +20,17 @@ systemctl start ace-bookworm-auto-upgrade
 fi
 
 
+
+# 检查apparmor服务的状态  
+apparmor_status=$(systemctl is-active apparmor)  
+  
+# 检查服务是否正在运行  
+if [ "$apparmor_status" == "active" ]; then  
+    echo "AppArmor 服务正在运行，执行重载配置..."  
+      
+systemctl reload apparmor
+else  
+    echo "AppArmor 服务没有运行。无需冲在配置"  
+fi
+
 true
