@@ -127,5 +127,6 @@ apt install --reinstall /flamescion-container-tools/ace-host-integration.deb
 cd /flamescion-container-tools/data-dir/
 ln -sfv ../../usr/share/applications/ .
 ln -sfv ../../usr/share/icons/ .
+ln -svf ../../usr/share/mime .
 update-desktop-database /usr/share/applications || true
 update-mime-database /usr/share/mime || true
