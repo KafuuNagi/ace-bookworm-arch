@@ -20,6 +20,6 @@ systemctl start ace-bookworm-auto-upgrade
 fi
 
 
-sysctl -w kernel.apparmor_restrict_unprivileged_userns=1
+sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
 
 true
