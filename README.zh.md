@@ -15,7 +15,7 @@
 
 ### 快捷安装 (需要安装星火应用商店)
 
-[spk://store/tools/cn.flamescion.bookworm-compatibility-mode/](https://spark-store-project.gitee.io/spk-resolv/?spk=spk://store/tools/cn.flamescion.bookworm-compatibility-mode/)
+[spk://store/tools/cn.flamescion.bookworm-compatibility-mode/](https://spk-resolv.spark-app.store/?spk=spk://store/tools/cn.flamescion.bookworm-compatibility-mode/)
 
 ### 手动安装（Debian/Fedora/Arch)
 
