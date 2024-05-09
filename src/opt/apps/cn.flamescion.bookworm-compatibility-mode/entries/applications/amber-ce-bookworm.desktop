@@ -1,0 +1,11 @@
+[Desktop Entry]
+Categories=utils
+Exec=bookworm-run %U
+Icon=amber-ce-bookworm
+Name=Amber CE Bookworm
+Name[zh_CN]=ACE Bookworm兼容环境
+Keywords=BCM,ACE,ace,mode
+StartupNotify=true
+Type=Application
+Terminal=true
+Categories=System
