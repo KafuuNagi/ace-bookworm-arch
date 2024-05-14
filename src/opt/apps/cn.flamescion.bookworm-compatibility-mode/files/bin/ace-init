@@ -61,8 +61,6 @@ bwrap --dev-bind $chrootEnvPath/ / \
 echo "Update the flamescion container tools"
 cp -r `dirname $chrootEnvPath`/flamescion-container-tools/  $chrootEnvPath
 
-rm -rf $chrootEnvPath/usr/lib/`gcc -dumpmachine`/dri/dri
-# 之前错误的多复制了一个，这里删掉
 
 export container_user_gid="$(sudo -u $non_root_user id -rg)"
 export container_user_home="/home/${non_root_user}"
