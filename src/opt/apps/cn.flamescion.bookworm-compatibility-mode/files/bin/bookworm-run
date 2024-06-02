@@ -116,7 +116,6 @@ BIND_DIRS=(
     "--ro-bind-try /usr/share/themes /usr/local/share/themes"
     "--ro-bind-try /usr/share/icons /usr/local/share/icons"
     "--ro-bind-try /usr/share/fonts /usr/local/share/fonts"
-    "--ro-bind-try $(realpath /etc/localtime) /etc/localtime"
     "--dev-bind-try /etc/resolv.conf /etc/resolv.conf"
     "--dev-bind-try /home /home"
 
