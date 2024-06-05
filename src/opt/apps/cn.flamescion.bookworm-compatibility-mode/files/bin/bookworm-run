@@ -106,6 +106,7 @@ BIND_DIRS=(
     "--dev-bind-try /media /media"
     "--dev-bind-try /mnt /mnt"
     "--dev-bind-try /tmp /tmp"
+    "--dev-bind-try /data /data"
     "--dev /dev"
     "--dev-bind-try /dev/dri /dev/dri"
     "--proc /proc"
@@ -118,7 +119,6 @@ BIND_DIRS=(
     "--ro-bind-try /usr/share/fonts /usr/local/share/fonts"
     "--dev-bind-try /etc/resolv.conf /etc/resolv.conf"
     "--dev-bind-try /home /home"
-
 )
 EXTRA_ARGS=(
     "--hostname Amber-CE-Bookworm"
