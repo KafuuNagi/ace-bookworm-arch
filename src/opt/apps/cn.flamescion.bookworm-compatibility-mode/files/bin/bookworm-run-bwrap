@@ -105,6 +105,7 @@ BIND_DIRS=(
     "--dev-bind $chrootEnvPath/ /"
     "--dev-bind-try /media /media"
     "--dev-bind-try /tmp /tmp"
+    "--dev-bind-try /data /data"
     "--dev /dev"
     "--dev-bind-try /dev/dri /dev/dri"
     "--proc /proc"
