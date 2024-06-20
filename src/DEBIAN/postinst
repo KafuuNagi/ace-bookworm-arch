@@ -17,8 +17,12 @@ if [ "${PACKAGE_NAME}" = "cn.flamescion.bookworm-compatibility-mode" ];then
 systemctl daemon-reload
 systemctl enable ace-bookworm-auto-upgrade
 systemctl start ace-bookworm-auto-upgrade
-fi
+        # enable kernel.unprivileged_userns_clone
+        # disable kernel.apparmor_restrict_unprivileged_unconfined and kernel.apparmor_restrict_unprivileged_userns
+        if [ -f /usr/lib/sysctl.d/amber-ce.conf ];then
+                sysctl -p /usr/lib/sysctl.d/amber-ce.conf
+        fi
 
-systemctl reload apparmor
+fi
 
 true
