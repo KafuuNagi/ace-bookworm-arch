@@ -25,15 +25,14 @@ Please use `git clone --recurse-submodules` to obtain the env
 
 ### Manual Install（Debian/Fedora/Arch)
 
-https://pan.shenmo.tech/index.php?share/folder&user=1&sid=Ye6kyxQE
-
+https://pan.shenmo.tech/index.php?share/folder&user=1&sid=7Nx2JEnS
 
 
 ### Amber-CE x86
 
 Use LAT to run a x86 bookworm container. Can install x86 debs and run x86 apps 
 
-https://pan.shenmo.tech/index.php?share/folder&user=1&sid=qnJAY5BE
+https://pan.shenmo.tech/index.php?share/folder&user=1&sid=quEphQ6w
 
 ## Build Guide
 
