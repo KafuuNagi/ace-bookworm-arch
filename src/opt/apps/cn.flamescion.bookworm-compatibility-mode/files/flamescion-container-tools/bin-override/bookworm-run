@@ -1,3 +1,4 @@
 #!/bin/bash
-### We do not want users to install ACE in ACE. Run inside this container instead
-${@}
+### We do not want users to install ACE in ACE.
+echo "Running ACE in ACE is NOT Tested or recommended. Exit"
+exit 1
