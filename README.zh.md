@@ -19,12 +19,12 @@
 
 ### 手动安装（Debian/Fedora/Arch)
 
-https://pan.shenmo.tech/index.php?share/folder&user=1&sid=7Nx2JEnS
+https://pan.spark-app.store/index.php?share/folder&user=1&sid=7Nx2JEnS
 
 
 ### Amber-CE x86
 
-利用 LAT 运行的x86容器，可安装和运行x86的deb  https://pan.shenmo.tech/index.php?share/folder&user=1&sid=quEphQ6w
+利用 LAT 运行的x86容器，可安装和运行x86的deb  https://pan.spark-app.store/index.php?share/folder&user=1&sid=quEphQ6w
 
 
 ## 构建指南
