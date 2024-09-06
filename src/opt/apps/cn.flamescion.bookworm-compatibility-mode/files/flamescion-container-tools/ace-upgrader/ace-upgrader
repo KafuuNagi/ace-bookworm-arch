@@ -95,10 +95,6 @@ fi
 
 
 
-/opt/ace-host-integration/ace-host-integration
-## Fix on GXDE OS initiate XDG_DATA_DIRS
-
-
 
 if [  $(which aptss)  ];then
 APT_COMMAND=aptss
