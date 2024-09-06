@@ -93,6 +93,13 @@ fi
 
 # The code above is modified from https://blog.csdn.net/yaxuan88521/article/details/120516298
 
+
+
+/opt/ace-host-integration/ace-host-integration
+## Fix on GXDE OS initiate XDG_DATA_DIRS
+
+
+
 if [  $(which aptss)  ];then
 APT_COMMAND=aptss
 /usr/bin/apt update
