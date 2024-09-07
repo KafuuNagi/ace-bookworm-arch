@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=bookworm.ace-gxde-fixer
+Name[zh_CN]=bookworm.ace-gxde-fixer
+Comment=bookworm.ace-gxde-fixer
+Type=Application
+Exec=/opt/apps/amber-ce-bookworm/files/bin/bookworm.ace-gxde-fixer
+Icon=amber-ce-bookworm
+Categories=System
+
+# Generated from the DesktopGenerater component of the z-Tools toolkit
