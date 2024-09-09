@@ -25,14 +25,14 @@ Please use `git clone --recurse-submodules` to obtain the env
 
 ### Manual Install（Debian/Fedora/Arch)
 
-https://pan.spark-app.store/index.php?share/folder&user=1&sid=7Nx2JEnS
+https://pan.huang1111.cn/s/jR1GdUy
 
 
 ### Amber-CE x86
 
 Use LAT to run a x86 bookworm container. Can install x86 debs and run x86 apps 
 
-https://pan.spark-app.store/index.php?share/folder&user=1&sid=quEphQ6w
+https://pan.huang1111.cn/s/P63D6Cm
 
 ## Build Guide
 
