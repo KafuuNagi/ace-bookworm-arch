@@ -116,8 +116,9 @@ mkdir -p /usr/share/icons
 mkdir -p /usr/share/themes
 
 ## init host-spawn
+##其实ln本身是可以用相对路径的，只是需要加-r。
 unlink /flamescion-container-tools/bin-override/host-spawn
-ln -sfv /flamescion-container-tools/bin-override/host-spawn-$(uname -m) /flamescion-container-tools/bin-override/host-spawn
+ln -srfv ./flamescion-container-tools/bin-override/host-spawn-$(uname -m) ./flamescion-container-tools/bin-override/host-spawn
 
 ## install host-integration
 
