@@ -1,0 +1,6 @@
+amber-ce-bookworm (12.4.14-2) UNRELEASED; urgency=low
+
+  * fix: always pop up upgradable 
+  * fix: only request main repo
+
+ -- shenmo <shenmo@spark-app.store>  Wed, 25 Sep 2024 23:15:49 +0800

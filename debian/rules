@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+#export DH_VERBOSE = 1
+
+%:
+	dh $@
+	
+override_dh_auto_configure:
+	cd src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files && bash build-container.sh $(shell uname -m)
+
