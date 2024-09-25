@@ -10,7 +10,7 @@ Rules-Requires-Root: binary-targets
 #Vcs-Browser: https://salsa.debian.org/debian/cn.flamescion.bookworm-compatibility-mode
 
 Package: cn.flamescion.bookworm-compatibility-mode
-Architecture: all
+Architecture: any
 Multi-Arch: foreign
 Depends: ${misc:Depends},bubblewrap,flatpak,zenity,policykit-1 | pkexec | polkit-1 | polkit,systemd,procps
 Description: bwrap wrapper for install and running debs inside a bookworm container
