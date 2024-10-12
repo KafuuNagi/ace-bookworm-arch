@@ -1,4 +1,4 @@
-# 书虫兼容模式
+# ACE Debian Bookworm
 
 # [English](README.md)
 
