@@ -21,12 +21,17 @@
 
 https://pan.huang1111.cn/s/jR1GdUy
 
+Ubuntu 18.04 需要安装 https://packages.debian.org/buster/bubblewrap 
+
 
 ### Amber-CE x86
 
 利用 LAT 运行的x86容器，可安装和运行x86的deb  
 
 https://pan.huang1111.cn/s/P63D6Cm
+
+
+---
 
 
 ## 构建指南

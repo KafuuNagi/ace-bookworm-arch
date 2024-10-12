@@ -27,12 +27,18 @@ Please use `git clone --recurse-submodules` to obtain the env
 
 https://pan.huang1111.cn/s/jR1GdUy
 
+Ubuntu 18.04 Need install https://packages.debian.org/buster/bubblewrap
+
 
 ### Amber-CE x86
 
 Use LAT to run a x86 bookworm container. Can install x86 debs and run x86 apps 
 
 https://pan.huang1111.cn/s/P63D6Cm
+
+
+---
+
 
 ## Build Guide
 
