@@ -8,3 +8,6 @@
 override_dh_auto_configure:
 	cd src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files && bash build-container.sh $(shell uname -m)
 
+override_dh_dwz:
+
+override_dh_strip:
