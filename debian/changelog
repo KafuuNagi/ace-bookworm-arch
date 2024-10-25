@@ -1,6 +1,7 @@
-amber-ce-bookworm (12.4.14-2) UNRELEASED; urgency=low
+amber-ce-bookworm (12.4.14-3) UNRELEASED; urgency=low
 
-  * fix: always pop up upgradable 
-  * fix: only request main repo
+  * fix: Auto upgrade service always pop up upgradable notifier
+  * fix: /etc/apt/sources.list only request main repo
+  * fix: sudo function error: Need sudo sudo to really sudo
 
  -- shenmo <shenmo@spark-app.store>  Wed, 25 Sep 2024 23:15:49 +0800
