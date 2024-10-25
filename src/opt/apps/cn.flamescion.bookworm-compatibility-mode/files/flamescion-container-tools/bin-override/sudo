@@ -2,5 +2,5 @@
 if [ "$UID" = "0" ];then
 /usr/bin/sudo $@
 else
-host-spawn sudo bookworm-run $@
+host-spawn sudo bookworm-run sudo $@
 fi
