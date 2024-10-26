@@ -18,7 +18,7 @@ stages:
         name: execute_by_docker
         displayName: Build Debian amd64
         certificate: ''
-        image: docker.io/debian:bookworm
+        image: hub.atomgit.com/amd64/debian:bookworm
         command:
           - export DEBIAN_FRONTEND=noninteractive
           - 'apt install devscripts '
