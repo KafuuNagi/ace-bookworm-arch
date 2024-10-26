@@ -21,7 +21,8 @@ stages:
         image: docker.jianmuhub.com/library/debian:bookworm
         command:
           - export DEBIAN_FRONTEND=noninteractive
-          - 'apt install devscripts '
+          - sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+          - apt update
           - apt build-dep . -y
           - dpkg-buildpackage -b -us -uc
           - cd ..
