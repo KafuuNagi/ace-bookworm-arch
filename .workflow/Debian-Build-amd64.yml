@@ -21,6 +21,8 @@ stages:
         image: docker.jianmuhub.com/library/debian:bookworm
         command:
           - export DEBIAN_FRONTEND=noninteractive
+          - apt update
+          - apt install ca-certificates -y
           - echo 'deb [trusted=yes] http://mirrors.sdu.edu.cn/debian bookworm main contrib non-free non-free-firmware' > /etc/apt/sources.list
           - rm -rfv /etc/apt/sources.list.d/*
           - apt update
