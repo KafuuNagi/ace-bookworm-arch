@@ -21,7 +21,7 @@ stages:
         image: docker.jianmuhub.com/library/debian:bookworm
         command:
           - export DEBIAN_FRONTEND=noninteractive
-          - echo 'deb [trusted=yes] https://mirrors.sdu.edu.cn/debian bookworm main contrib non-free non-free-firmware' /etc/apt/sources.list
+          - echo 'deb [trusted=yes] https://mirrors.sdu.edu.cn/debian bookworm main contrib non-free non-free-firmware' > /etc/apt/sources.list
           - rm -rfv /etc/apt/sources.list.d/*
           - apt update
           - apt build-dep . -y
