@@ -5,7 +5,7 @@ parent_dir=`dirname $curdir`
 pparent_dir=`dirname $parent_dir`
 ppparent_dir=`dirname $pparent_dir`
 PKGNAME=`basename $ppparent_dir`
-export PACKAGE_NAME=$PKGNAME
+export ACE_PACKAGE_NAME=$PKGNAME
 chrootEnvPath=/opt/apps/$PKGNAME/files/ace-env
 
 if [ ! -e $chrootEnvPath/finish.flag ];then
