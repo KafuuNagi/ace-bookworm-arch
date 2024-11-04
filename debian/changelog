@@ -1,7 +1,8 @@
-amber-ce-bookworm (12.4.14-3) UNRELEASED; urgency=low
+amber-ce-bookworm (12.4.14-4) UNRELEASED; urgency=low
 
   * fix: Auto upgrade service always pop up upgradable notifier
   * fix: /etc/apt/sources.list only request main repo
   * fix: sudo function error: Need sudo sudo to really sudo
+  * fix: ACE Host Integration fail
 
  -- shenmo <shenmo@spark-app.store>  Wed, 25 Sep 2024 23:15:49 +0800
