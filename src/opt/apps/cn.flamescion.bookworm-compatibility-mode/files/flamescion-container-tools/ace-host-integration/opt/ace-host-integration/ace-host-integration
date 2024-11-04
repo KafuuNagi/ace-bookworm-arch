@@ -63,7 +63,7 @@ local file=$1
     chmod +x $file
 }
 
-if [  "${IS_ACE_ENV}" != "" ];then
+if [  "${IS_ACE_ENV}" != "" ] || [[ -e /opt/ace-host-integration/ace-host-integration ]] && [[ -e /flamescion-container-tools ]];then
 	if [ -e /opt/apps/ ];then
 	for app_dir in $(ls /opt/apps/); do
 		for file in /opt/apps/$app_dir/entries/applications/*.desktop;do
