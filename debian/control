@@ -2,7 +2,7 @@ Source: amber-ce-bookworm
 Section: misc
 Priority: optional
 Maintainer: shenmo <shenmo@spark-app.store>
-Build-Depends: debhelper-compat (= 13),debootstrap,systemd-container
+Build-Depends: debhelper-compat (= 13),debootstrap,systemd-container,sudo
 Standards-Version: 4.5.1
 Homepage: https://gitee.com/amber-ce/amber-ce-bookworm/
 Rules-Requires-Root: binary-targets
