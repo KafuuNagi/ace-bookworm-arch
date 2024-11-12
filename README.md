@@ -25,7 +25,9 @@ Please use `git clone --recurse-submodules` to obtain the env
 
 ### Manual Install（Debian/Fedora/Arch)
 
-https://pan.huang1111.cn/s/jR1GdUy
+Share Link：https://disk.ningsuan.com.cn/#s/-_TON-hg
+
+Access Pass：bunny
 
 Ubuntu 18.04 Need install https://packages.debian.org/buster/bubblewrap
 
