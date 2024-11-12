@@ -39,7 +39,7 @@ stages:
         artifacts:
           - name: BUILD_ARTIFACT
             path:
-              - ./target
+              - ../target/
         notify: []
         strategy:
           retry: '0'
