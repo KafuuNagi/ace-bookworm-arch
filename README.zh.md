@@ -20,9 +20,7 @@
 ### 手动安装（Debian/Fedora/Arch)
 
 
-分享链接：https://disk.ningsuan.com.cn/#s/-_TON-hg
-
-访问密码：bunny
+分享链接：https://disk.ningsuan.com.cn/#s/-_TON-hg      访问密码：bunny
 
 Ubuntu 18.04 需要安装 https://packages.debian.org/buster/bubblewrap 
 
