@@ -29,13 +29,13 @@ stages:
           - apt build-dep . -y
           - dpkg-buildpackage -b -us -uc
           - cd ..
-          - ls -all
+          - ''
           - mkdir target
           - for f in $(find . -type f -name "*.deb")
           - 'do '
-          - mv $f target
+          - mv -v $f target
           - done
-          - ''
+          - ls -all
         artifacts:
           - name: BUILD_ARTIFACT
             path:
