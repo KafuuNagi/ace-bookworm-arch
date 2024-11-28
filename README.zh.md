@@ -24,7 +24,7 @@
 
 Ubuntu 18.04 需要安装 https://packages.debian.org/buster/bubblewrap 
 
-
+Arch：`yay -S amber-ce-bookworm`
 
 ---
 

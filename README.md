@@ -29,6 +29,8 @@ Share Link：https://pan.huang1111.cn/s/jR1GdUy
 
 Ubuntu 18.04 Need install https://packages.debian.org/buster/bubblewrap
 
+Arch: `yay -S amber-ce-bookworm`
+
 
 ### Amber-CE x86
 
