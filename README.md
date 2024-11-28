@@ -46,14 +46,10 @@ https://pan.huang1111.cn/s/P63D6Cm
 
 ### Debian
 
-Build the container first then build the package. Container at `src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files`
-Here are the details:
-1. Install dependencies: sudo apt-get install arch-test debootstrap libnss-mymachines systemd-container
-2. Enter the terminal at `src/opt/apps/cn.flamescion.bookworm-compatibility-mode/files` and execute `./build-container.sh amd64`.[for amd,other arch please change]
-3. Wait for the container to complete.
-4.Get in to `amber-ce-bookworm` dir,run`fakeroot dpkg-deb -b src .`
-5.Wating for complete.
-
+```
+apt build-dep .
+dpkg-buildpackage -us -uc -b 
+```
 
 ### Fedora
 
