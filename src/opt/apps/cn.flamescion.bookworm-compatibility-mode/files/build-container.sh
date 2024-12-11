@@ -38,10 +38,6 @@ sudo rm -rf ace-env/var/cache/apt/archives/*.deb
 sudo tar -I 'xz -T0' -cvf ace-env.tar.xz ace-env/*
 sudo rm -rf ace-env
 
-pushd flamescion-container-tools/ace-host-integration
 
-dpkg-deb -Z xz -b . ../ace-host-integration.deb
-
-popd
 
 
